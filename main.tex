@@ -1,0 +1,54 @@
+% IMPORTANT! In order for the document to compile, one needs to use XeLaTeX or LuaLaTeX as compiler.
+% In Overleaf this can be done via Menu -> Settings -> Compiler -> Choose XeLaTeX/LuaLaTeX.
+\documentclass[12pt]{article}
+
+\input{preamble}
+
+% This change the content of the frontpage
+\ptype{Assignment 1}
+\author{Christian Kristensen}
+\title{Surgery and Postsurgical Care}
+\subtitle{Part 1 (DCR) and Part 2 (BPMN)}
+\date{Date: February 14, 2026}
+\advisor{Course: NDAB20010U Health Data and Interoperability}
+\fpimage{picture.png} % Remove this command if no image is desired
+
+\begin{document}
+
+\maketitle
+
+\onehalfspacing
+
+\begin{table}[h]
+\def\arraystretch{1.5}
+\rowcolors{2}{black!5}{white}
+\begin{tabularx}{\textwidth}{l X}
+Institution: & University of Copenhagen, Faculty of Health and Medical Sciences \\
+Department: & Department of Public Health \\
+Program: & BSc in Health Informatics (6th semester) \\
+Course: & NDAB20010U Health Data and Interoperability \\
+Author: & Christian Kristensen \\
+KUID: & TDH522 \\
+Title and subtitle: & Assignment 1, Part 1 \& 2 \\
+Instructor(s): & Thomas Troels Hildebrandt (Course admin and teacher) \& Hubert Dariusz Zajac (Teacher) \\
+Exam format: & Written report \\
+Appendices: & Included if applicable \\
+Date: & February 12, 2026
+\end{tabularx}
+\end{table}
+
+\section*{AI Declaration}
+I declare that AI has only been used for grammatical correction.\\
+AI has \textbf{not} been used to generate content, reasoning, or structure.
+\newpage
+
+\tableofcontents
+\clearpage
+
+%indsæt opgaver her
+
+
+\clearpage
+\printbibliography[heading=bibintoc,title={References}]
+
+\end{document}
