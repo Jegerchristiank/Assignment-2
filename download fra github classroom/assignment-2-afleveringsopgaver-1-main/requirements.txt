@@ -1,0 +1,4 @@
+# Minimal requirements for running the radiology data quality and conformance notebook
+pandas==2.2.2
+
+numpy==1.26.4

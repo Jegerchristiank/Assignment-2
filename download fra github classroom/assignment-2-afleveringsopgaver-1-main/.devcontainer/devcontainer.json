@@ -1,0 +1,23 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:latest",
+  "features": {},
+  "postCreateCommand": "pip install --upgrade pip && pip install pandas numpy jupyter",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "-github.copilot-chat",
+        "-github.copilot"
+      ],
+      "settings": {
+        "github.copilot.enable": { "*": false },
+        "github.chat.agent.enabled": false,
+        "github.copilot.chat.agent.autoFix": false,
+        "github.copilot.inlineSuggest.enable": false,
+        "chat.commandCenter.enabled": false,
+        "python.defaultInterpreterPath": "/usr/local/bin/python"
+      }
+    }
+  }
+}
