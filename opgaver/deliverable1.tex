@@ -2,13 +2,68 @@
 \label{sec:deliverable1}
 
 \subsubsection{Study Context and Participant}
+This study concerns one participant only. The participant is the author of this report and performs the routine alone on regular weekdays. The selected routine is a non-sensitive everyday morning routine from waking up to leaving home.
+
+The interview phase was conducted on February 18, 2026, as a self-recorded explanation guided by open-ended prompts, and documented as a structured transcript (Appendix~\ref{app:part1_transcript}). The transcript uses line numbers (L01-L22) so that each modelling statement in this deliverable can be traced back to interview evidence.
 
 \subsubsection{Scope and Boundaries of the Routine}
+The routine boundary is explicitly defined by the participant as:
+\begin{itemize}
+  \item Start condition: the alarm sounds on the phone (Appendix~\ref{app:part1_transcript}, L22).
+  \item End condition: the apartment door closes when the participant leaves for transport to campus (Appendix~\ref{app:part1_transcript}, L22).
+\end{itemize}
+
+The routine scope includes hygiene, dressing, bag preparation, breakfast-related actions, and pre-departure checks. Activities after leaving home are excluded.
 
 \subsubsection{Interview-Based Process Description}
+The participant describes the morning as a mostly stable sequence with minor daily variation. In the intended sequence, the alarm is followed by water intake and bathroom/shower activities. The participant then gets dressed, prepares the bag, and makes breakfast with coffee. Breakfast is typically consumed while reviewing schedule and transport status. The routine ends with dental care, weather check, final essentials check, and departure.
+
+The interview also indicates expected variation points: occasional snoozing, occasional replacement of toast with fruit when time is tight, and occasional key-search episodes (Appendix~\ref{app:part1_transcript}, L14-L16). These statements were retained in the model as known variation, not as dominant flow.
 
 \subsubsection{Activities, Sequence, and Participants}
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Interview-based activity specification (work-as-imagined / knowledge-as-stated)}
+\label{tab:d1_activity_spec}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{0.07\textwidth}
+>{\raggedright\arraybackslash}p{0.19\textwidth}
+>{\raggedright\arraybackslash}p{0.10\textwidth}
+>{\raggedright\arraybackslash}p{0.08\textwidth}
+>{\raggedright\arraybackslash}p{0.14\textwidth}
+>{\raggedright\arraybackslash}p{0.20\textwidth}
+>{\raggedright\arraybackslash}p{0.12\textwidth}
+}
+\toprule
+ID & Activity label & Actor & Order & Expected time window & Tools/resources & Source lines \\
+\midrule
+A01 & Stop alarm and orient to time & Participant & 1 & 06:45-06:47 & Smartphone alarm & L02, L22 \\
+A02 & Drink water & Participant & 2 & 06:47-06:50 & Glass, kitchen tap & L03 \\
+A03 & Toilet and shower & Participant & 3 & 06:50-07:02 & Bathroom, shower & L03-L04 \\
+A04 & Dress and pack bag & Participant & 4 & 07:02-07:12 & Wardrobe, backpack & L05-L06 \\
+A05 & Prepare breakfast and coffee & Participant & 5 & 07:12-07:20 & Coffee machine, toaster & L07, L15, L20 \\
+A06 & Eat breakfast and review schedule & Participant & 6 & 07:20-07:25 & Table, smartphone calendar/apps & L08, L20 \\
+A07 & Brush teeth and final grooming & Participant & 7 & 07:25-07:28 & Toothbrush, mirror & L09 \\
+A08 & Check weather and essentials & Participant & 8 & 07:28-07:30 & Weather app, keys, wallet, ID card & L10-L11 \\
+A09 & Leave apartment for commute & Participant & 9 & 07:30 & Front door, bag & L12, L22 \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 \subsubsection{Resources, Tools, and Interaction Points}
+The routine depends on both physical and digital tools. Physical tools include the bathroom setup, coffee machine, toaster, backpack, and keys. Digital tools include smartphone alarm, calendar, weather app, and transport-related checking. These tools shape both ordering and timing because several activities are triggered by app feedback or availability of physical objects.
+
+The participant reports that the routine is usually individual, with rare interaction through text messages when a shared item is needed (Appendix~\ref{app:part1_transcript}, L18). This interaction point is modelled as a potential variation node rather than a mandatory activity.
 
 \subsubsection{Assumptions and Points Requiring Clarification}
+To make the interview-based model executable and ready for comparison with Deliverable 2, the following assumptions were fixed:
+\begin{itemize}
+  \item The routine model represents a weekday baseline, not a weekend variant.
+  \item A03 is modelled as one activity block (toilet + shower) even though it can be split into finer events in observation.
+  \item A06 assumes seated breakfast; the interview indicates this as the intended norm.
+  \item The participant is the only consistent human actor; digital systems are treated as tools, not separate actors.
+  \item Expected windows in Table~\ref{tab:d1_activity_spec} are interview-derived approximations, not measured durations.
+\end{itemize}
+
+These assumptions are intentionally explicit because they become testable in Deliverable 2 and directly support delta analysis in Deliverable 3.

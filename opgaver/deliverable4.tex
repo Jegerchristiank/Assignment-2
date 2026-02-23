@@ -2,13 +2,43 @@
 \label{sec:deliverable4}
 
 \subsubsection{Question 1: Data Missed or Misrepresented in the Interview-Based Model}
+Finding: The interview-based model missed contingent micro-actions (E03, E10) and misrepresented breakfast regularity (D01, D06). It captured the intended routine, but not short coordination interruptions or fallback behaviors.
+
+Why this happened: In the interview, the participant described the ``typical'' flow and compressed variation into short comments (Appendix~\ref{app:part1_transcript}, L14-L16, L18). This favors stable narrative structure over moment-to-moment detail.
+
+Implication: A model derived only from interview data is better interpreted as knowledge-as-stated than as an exhaustive representation of enacted behavior, consistent with the assignment framing of say-do gaps.
 
 \subsubsection{Question 2: What Counted as an Activity in Each Model}
+Finding: In the interview model, activities are coarse and intention-oriented (A01-A09). In the observed model, activities are finer and situation-oriented (E01-E14), including short adaptations.
+
+Why this happened: Interview responses aggregate multiple actions into meaningful chunks (for example ``toilet and shower''), while event logging favors timestamped, operationally distinct actions.
+
+Implication: Activity granularity is method-dependent. The interview supports communicable high-level modelling, whereas the event log supports trace-level comparison and conformance checks.
 
 \subsubsection{Question 3: How the Event Log Constrained What Could Be Modelled}
+Finding: The event log enabled explicit ordering/timing comparison, but constrained interpretation of intentions and meaning. It captured what happened and when, but not why each choice was made unless noted manually in \texttt{context\_note}.
+
+Why this happened: The CSV schema privileges discrete, timestamped events. Interpretive context must be added deliberately and remains selective.
+
+Implication: Event-log-based models are powerful for process traces yet incomplete for understanding motives, trade-offs, or tacit norms. This is visible in D06, where ``breakfast'' required interpretation beyond raw event strings.
 
 \subsubsection{Question 4: Potential and Limits of Automatic Event Capture}
+Finding: Parts of this routine could be captured automatically (alarm, app checks, transport app openings), while other parts remain difficult (bathroom behavior, item-search, ad hoc coordination intent).
+
+Why this happened: Digital touchpoints produce machine records, but embodied and informal actions are unevenly instrumented. Even when a message is logged, its operational meaning (routine-critical or not) is not self-evident.
+
+Implication: Automatic capture can improve temporal completeness but cannot by itself replace qualitative interpretation. A hybrid approach is needed if models are to reflect both execution and meaning \parenciteshort{guidehealthinformatics2026ch27,zajac2026methodsknowing}.
 
 \subsubsection{Question 5: Variations and Exceptions Revealed by Observation}
+Finding: Observation revealed three concrete variation types: omitted intended activity (no seated breakfast), sequence inversion (packing after breakfast prep started), and recovery action (borrowed lock via text).
+
+Why this happened: Real execution is shaped by local constraints (missing bread, missing lock, incoming message), which were known only as vague possibilities in interview form.
+
+Implication: Observation exposes operational variability that materially affects process models. Without observation, the model would overestimate linearity and underrepresent resilience behaviors.
 
 \subsubsection{Question 6: Relevance of Qualitative Discovery in Process Modelling}
+Finding: Qualitative discovery methods (interview + observation) are necessary to reconcile work-as-imagined with work-as-done. The delta sheet demonstrates that both perspectives are valid but partial.
+
+Why this happened: Interviews provide structured accounts and participant rationale; observations provide enacted sequences and deviations. Neither alone is sufficient for a robust model.
+
+Implication: Process modelling quality improves when qualitative discovery is treated as a core modelling activity, not only as pre-processing. This aligns with Chapter 27's view that model construction depends on how knowledge is elicited and validated in practice \parenciteshort{guidehealthinformatics2026ch27}.
