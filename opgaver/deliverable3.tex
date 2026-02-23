@@ -2,7 +2,9 @@
 \label{sec:deliverable3}
 
 \subsubsection{Comparison Method and Mapping Criteria}
-The comparison was performed by mapping each interview activity (A01-A09; Table~\ref{tab:d1_activity_spec}) to observed events (E01-E14; Table~\ref{tab:d2_observed_excerpt}). A delta was recorded when at least one of the following differed: presence/absence, order, timing, coordination behavior, or action label interpretation.
+The comparison maps interview activities (A01-A09; Table~\ref{tab:d1_activity_spec}) to observed events (E01-E14; Table~\ref{tab:d2_observed_excerpt}). A delta was recorded when presence/absence, order, timing, coordination behavior, or label interpretation differed. In assignment terms, this is a structured comparison of knowledge-as-stated and knowledge-as-discovered.
+
+Two decision rules were used for consistency. First, a timing distortion was registered when observed start/end placement shifted by more than three minutes relative to the expected D1 window. Second, relabeling/ambiguity was registered when one interview label could validly map to more than one observed operational interpretation.
 
 Table~\ref{tab:d3_delta_sheet} is the formal delta sheet used for this assignment.
 
@@ -25,30 +27,49 @@ Delta ID & Category & Interview ref. & Observed ref. & Difference description & 
 D01 & Missing events & A06 (L08) & No direct event; gap between E08 and E11 & No seated ``eat breakfast and review schedule'' event occurred. & Interview model overstates routine regularity and misses skipped meal behavior. \\
 D02 & Extra events & None in baseline flow & E03 (06:52) & Roommate messaging step appears after waking; not present in interview sequence. & Log reveals micro-coordination work that affects total duration. \\
 D03 & Different order & A04 before A05 (L05-L07) & E07/E09 & Bag packing occurred after breakfast preparation started. & Intended order is not stable; sequence constraints are weaker than stated. \\
-D04 & Timing distortions & A03 expected 06:50-07:02 & E05 (06:57) to E06 (07:07) & Hygiene block was shorter than stated; wake-up start delayed by snooze/checking phone. & Duration assumptions in interview are optimistic and compress variability. \\
+D04 & Timing distortions & A03 expected 06:50-07:02 & E05 (06:57) to E06 (07:07) & Hygiene block was near lower-bound duration but shifted later than the expected window due to delayed wake-up actions. & Interview timing windows understate phase shifts caused by early-routine interruptions. \\
 D05 & Workarounds/ coordination steps & A08 final check only (L11) & E10 (07:21) & Missing lock triggered ad hoc borrowing through text to roommate. & Hidden recovery actions are essential for successful completion but underreported in interview. \\
 D06 & Relabeling/ ambiguity & A05 + A06 (L07-L08, L15) & E08, E13 & ``Breakfast'' shifted from toast-at-table to banana + coffee-to-go, blurring preparation vs consumption. & Event labels require operational definitions; otherwise conformance results become unstable. \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
+\begin{table}[H]
+\centering
+\small
+\caption{Delta category counts}
+\label{tab:d3_delta_counts}
+\begin{tabular}{l c}
+\toprule
+Category & Count \\
+\midrule
+Missing events & 1 \\
+Extra events & 1 \\
+Different order & 1 \\
+Timing distortions & 1 \\
+Workarounds/coordination steps & 1 \\
+Relabeling/ambiguity & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \subsubsection{Missing Events}
-The missing-event category is represented by D01. The interview model expects a distinct seated breakfast-and-schedule-review step (A06), but this did not occur as a separable observed event. Instead, nutrition was reduced to a quick banana and coffee transfer. This shows that a declared routine element can be absent in practice without aborting the overall routine.
+D01 captures a missing event: A06 (seated breakfast plus schedule review) did not occur as a distinct observed event. Instead, nutrition was reduced to banana + coffee-to-go. A stated routine element was therefore absent without preventing completion.
 
 \subsubsection{Extra Events}
-D02 captures an event absent from the interview baseline: a short roommate-message response at 06:52. Although brief, it consumed time early in the routine and influenced subsequent timing. This illustrates that event logs can expose routine ``noise'' that interview participants may not consider worth reporting.
+D02 captures an extra event: a short roommate-message response at 06:52. Although brief, it affected early timing and was not part of the interview baseline.
 
 \subsubsection{Different Order}
-D03 shows a sequence inversion: bag packing (A04) occurred after breakfast preparation had started (E07, E09), while the interview sequence placed packing before breakfast (L05-L07). This is a concrete say-do gap in ordering, not merely in timing.
+D03 shows a sequence inversion: bag packing (A04) occurred after breakfast preparation had started (E07, E09), while the interview sequence placed packing before breakfast (L05-L07). This is a direct say-do gap in ordering.
 
 \subsubsection{Timing Distortions}
-D04 documents both delay and compression effects. Wake-up actions were delayed by snoozing and phone checking, while the hygiene block was executed faster than the interview estimate. Timing distortions therefore occurred in opposite directions within the same routine.
+D04 shows a phase shift. Wake-up actions were delayed (snooze + phone check), so hygiene started later than the expected window even though duration was near the lower bound. The key issue is shifted placement, not only speed.
 
 \subsubsection{Workarounds and Coordination Steps}
-D05 demonstrates an ad hoc coordination step: borrowing a lock through text when a needed item was unavailable. The interview did mention that rare interactions can happen (L18), but not this specific dependency path. The workaround was critical for completion and would be invisible in a purely normative process description.
+D05 identifies an ad hoc workaround: borrowing a lock by text when a needed item was missing. The interview mentioned rare interaction (L18), but not this concrete dependency path. This step was essential for successful completion.
 
 \subsubsection{Relabeling and Ambiguity}
-D06 concerns category boundaries. The interview label ``breakfast'' implied a sit-down meal; observation produced a split pattern (banana + coffee-to-go). This makes it unclear whether breakfast should be encoded as preparation, consumption, or a combined concept. Without explicit coding rules, multiple interpretations remain valid.
+D06 concerns label ambiguity. In the interview, ``breakfast'' implied a sit-down meal; in observation it became banana + coffee-to-go. This blurs whether ``breakfast'' should be coded as preparation, consumption, or both.
 
 \subsubsection{Summary of Key Differences and Implications}
-All six required delta categories are present and traceable. The comparison shows that the interview model is useful as a high-level skeleton but underrepresents contingent actions, local reordering, and category ambiguity. The observed log improves empirical grounding but introduces its own modelling challenge: event labels must be tightly defined to avoid interpretive drift. Together, Deliverables 1-3 provide the evidence base for reflective analysis in Deliverable 4.
+All six required delta categories are present and traceable (Table~\ref{tab:d3_delta_counts}). The interview model provides a clear high-level skeleton, but it underrepresents contingency, local reordering, and label ambiguity. The observed log adds empirical grounding but requires stricter label definitions. Together, Deliverables 1-3 provide a clear evidence chain for Deliverable 4.
