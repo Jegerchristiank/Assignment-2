@@ -1,6 +1,6 @@
 % IMPORTANT! In order for the document to compile, one needs to use XeLaTeX or LuaLaTeX as compiler.
 % In Overleaf this can be done via Menu -> Settings -> Compiler -> Choose XeLaTeX/LuaLaTeX.
-\documentclass[12pt]{article}
+\documentclass[11pt]{article}
 
 \input{preamble}
 
@@ -15,46 +15,19 @@
 
 \begin{document}
 
-\maketitle
+\begin{center}
+{\Large \textbf{Assignment 2: Qualitative Methods and Data Quality}}\\
+\vspace{0.15em}
+NDAB20010U Health Data and Interoperability\\
+Christian Kristensen \quad (KUID: TDH522)\\
+March 2, 2026
+\end{center}
 
-\onehalfspacing
-
-\begin{table}[h]
-\def\arraystretch{1.5}
-\rowcolors{2}{black!5}{white}
-\begin{tabularx}{\textwidth}{l X}
-Institution: & University of Copenhagen, Faculty of Health and Medical Sciences \\
-Department: & Department of Public Health \\
-Program: & BSc in Health Informatics (6th semester) \\
-Course: & NDAB20010U Health Data and Interoperability \\
-Author: & Christian Kristensen \\
-KUID: & TDH522 \\
-Title and subtitle: & Assignment 2, Part I \& II \\
-Instructor(s): & Thomas Troels Hildebrandt (Course admin and teacher) \& Hubert Dariusz Zajac (Teacher) \\
-Exam format: & Written report \\
-Appendices: & Included if applicable \\
-Date: & March 2, 2026
-\end{tabularx}
-\end{table}
-
-\section*{AI Declaration}
-I declare that AI has only been used for grammatical correction.\\
-AI has \textbf{not} been used to generate content, reasoning, or structure.
-\newpage
-
-\tableofcontents
-\clearpage
+\singlespacing
 
 %indsæt opgaver her
 \input{opgaver/part1}
-\clearpage
 \input{opgaver/part2}
-
-\clearpage
-\appendix
-\input{opgaver/appendix_part1_transcript}
-
-\clearpage
 \printbibliography[heading=bibintoc,title={References}]
 
 \end{document}

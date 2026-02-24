@@ -2,111 +2,47 @@
 \label{sec:deliverable2}
 
 \subsubsection{Observation Procedure and Documentation}
-The observation was conducted on February 20, 2026 (06:45-07:30), i.e., two days after the interview on February 18, 2026. This satisfies the assignment requirement to separate interview and observation phases and reduce recall bias.
+The observation was conducted on February 20, 2026 (06:45-07:30), two days after the interview on February 18, 2026. This satisfies the required delay between interview and observation.
 
-In this individual setup, the participant self-recorded the routine performance and produced detailed observation notes. The notes were transcribed into a structured event log with timestamps, labels, and context notes. This log is the work-as-recorded representation of work-as-done.
+A short observation guide was used to focus on sequence, tools, interactions, and deviations from the interview baseline. Notes were captured as descriptive notes (what happened, when, with which tool) and reflexive notes (questions/uncertainties). The event log was transcribed from descriptive notes only.
 
-Before observation, a short observation guide was prepared to keep focus on sequence, tools, interaction points, and deviations from the interview baseline. During observation, notes were split into two types in line with course practice: descriptive notes (what happened, when, with which tool) and reflexive notes (uncertainties, interpretation candidates, and follow-up questions). Only descriptive evidence was transferred directly to the event log.
+The full machine-readable event log is submitted as a separate CSV artifact with timestamps, event labels, and context notes.
 
-The full machine-readable event log is submitted as a separate CSV artifact together with the report.
+\subsubsection{Event Log Schema}
+The submitted CSV uses the following fields: \texttt{case\_id}, \texttt{event\_id}, \texttt{timestamp} (ISO datetime), \texttt{event\_label}, \texttt{actor}, \texttt{tool}, \texttt{context\_note}, and \texttt{related\_activity\_id} (A01-A09 or NA).
 
-An event boundary was registered when action intention, tool context, or coordination state changed. This gives enough granularity for ordering and timing analysis without over-fragmenting the trace.
-
-\subsubsection{Event Log Structure and Field Definitions}
-The event log uses one case identifier and a sequence of timestamped events. Table~\ref{tab:d2_fields} defines each field.
-
-\begin{table}[H]
-\centering
-\small
-\caption{Field definitions for the observed event log}
-\label{tab:d2_fields}
-\rowcolors{3}{black!4}{white}
-\begin{tabularx}{\textwidth}{l l X}
-\toprule
-Field & Type & Description \\
-\midrule
-\texttt{case\_id} & String & Routine instance identifier (\texttt{MORNING\_2026\_02\_20}). \\
-\texttt{event\_id} & String & Unique event identifier (\texttt{E01}, \texttt{E02}, ...). \\
-\texttt{timestamp} & ISO datetime & Event time in \texttt{YYYY-MM-DDTHH:MM:SS} format. \\
-\texttt{event\_label} & String & Short action label observed in practice. \\
-\texttt{actor} & String & Performer of the event (participant). \\
-\texttt{tool} & String & Main tool or artifact used in the event. \\
-\texttt{context\_note} & String & Observation detail, deviation, or interruption context. \\
-\texttt{related\_activity\_id} & String & Mapping to interview model activity (\texttt{A01-A09}) or \texttt{NA}. \\
-\bottomrule
-\end{tabularx}
-\rowcolors{3}{}{}
-\end{table}
-
-\subsubsection{Observed Event Log}
-Table~\ref{tab:d2_observed_excerpt} shows the observed sequence used in Deliverable 3. The same records are in the CSV artifact.
+\subsubsection{Observed Event Sequence (Report Excerpt)}
+Table~\ref{tab:d2_observed_excerpt} shows the key observed sequence used for comparison in Deliverable 3.
 
 \begin{table}[H]
 \centering
 \footnotesize
-\caption{Observed event log (February 20, 2026)}
+\caption{Observed event-log excerpt (February 20, 2026)}
 \label{tab:d2_observed_excerpt}
 \rowcolors{3}{black!4}{white}
 \begin{tabularx}{\textwidth}{
->{\raggedright\arraybackslash}p{0.07\textwidth}
->{\raggedright\arraybackslash}p{0.15\textwidth}
->{\raggedright\arraybackslash}p{0.21\textwidth}
+>{\raggedright\arraybackslash}p{0.08\textwidth}
+>{\raggedright\arraybackslash}p{0.16\textwidth}
+>{\raggedright\arraybackslash}p{0.20\textwidth}
 >{\raggedright\arraybackslash}p{0.12\textwidth}
 >{\raggedright\arraybackslash}X
->{\raggedright\arraybackslash}p{0.06\textwidth}
+>{\raggedright\arraybackslash}p{0.07\textwidth}
 }
 \toprule
 Event & Timestamp & Event label & Tool & Context note & Ref. \\
 \midrule
-E01 & 2026-02-20 06:45 & Alarm rings and snooze & Smartphone alarm & Alarm rings and is snoozed once. & A01 \\
-E02 & 2026-02-20 06:50 & Stop alarm and check phone & Smartphone & Alarm is stopped; notifications checked. & A01 \\
-E03 & 2026-02-20 06:52 & Reply to roommate message & Messaging app & Short text exchange about a shared household item. & NA \\
-E04 & 2026-02-20 06:55 & Drink water & Kitchen glass & Drinks one glass of water. & A02 \\
-E05 & 2026-02-20 06:57 & Toilet and shower & Bathroom & Combined hygiene block, near lower-bound duration and later than expected window. & A03 \\
-E06 & 2026-02-20 07:07 & Dress for day & Wardrobe & Clothing selected and put on. & A04 \\
-E07 & 2026-02-20 07:12 & Start coffee and toast & Coffee machine, toaster & Begins breakfast preparation. & A05 \\
-E08 & 2026-02-20 07:16 & Switch breakfast to banana & Kitchen & Toast cancelled due to no bread. & A05 \\
-E09 & 2026-02-20 07:18 & Pack bag & Backpack & Bag packed after breakfast prep started. & A04 \\
-E10 & 2026-02-20 07:21 & Find keys and borrow lock & Keys, messaging app & Missing lock resolved via roommate text. & A08 \\
-E11 & 2026-02-20 07:23 & Brush teeth & Toothbrush & Brushing done before final coffee transfer. & A07 \\
-E12 & 2026-02-20 07:26 & Check weather and bus app & Weather app, transport app & Route and weather checked before leaving. & A08 \\
-E13 & 2026-02-20 07:28 & Pour coffee to-go & Thermos & Coffee moved to thermos; no seated breakfast event. & A05 \\
-E14 & 2026-02-20 07:30 & Leave apartment & Front door & Participant leaves apartment. & A09 \\
+E01 & 2026-02-20 06:45 & Alarm rings and snooze & Smartphone alarm & One snooze before wake-up. & A01 \\
+E03 & 2026-02-20 06:52 & Reply to roommate message & Messaging app & Extra micro-coordination event. & NA \\
+E05 & 2026-02-20 06:57 & Toilet and shower & Bathroom & Hygiene block started later than interview expectation. & A03 \\
+E07 & 2026-02-20 07:12 & Start coffee and toast & Coffee machine, toaster & Breakfast preparation begins. & A05 \\
+E08 & 2026-02-20 07:16 & Switch breakfast to banana & Kitchen & Breakfast adapted due to no bread. & A05 \\
+E09 & 2026-02-20 07:18 & Pack bag & Backpack & Packing occurs after breakfast prep starts. & A04 \\
+E10 & 2026-02-20 07:21 & Find keys and borrow lock & Keys, messaging app & Workaround to solve missing item. & A08 \\
+E14 & 2026-02-20 07:30 & Leave apartment & Front door & End of observed routine boundary. & A09 \\
 \bottomrule
 \end{tabularx}
 \rowcolors{3}{}{}
 \end{table}
 
-\subsubsection{Contextual Notes, Deviations, and Interruptions}
-Three deviations were most relevant for the say-do gap:
-\begin{itemize}
-  \item A short messaging event (E03) occurred between alarm and water intake. This event was not included in the interview baseline.
-  \item Breakfast changed from intended toast-at-table behavior to a fast banana plus coffee-to-go sequence (E08, E13).
-  \item A coordination workaround occurred when a missing lock triggered text-based borrowing from a roommate (E10).
-\end{itemize}
-
-These contextual notes were preserved in the log because they affect both ordering and interpretation of what counts as a meaningful activity.
-
-\subsubsection{Traceability and Completeness of the Log}
-Each event includes \texttt{related\_activity\_id}, linking the log to the interview model (A01-A09). This is the primary mapping key used in Deliverable 3.
-
-For the selected scope (alarm-to-door-close), all major actions are timestamped and all relevant deviations are explicitly coded in \texttt{context\_note}. This supports direct comparison between work-as-imagined (Deliverable 1), work-as-done, and work-as-recorded (Deliverable 2).
-
-\begin{table}[H]
-\centering
-\small
-\caption{Event-log quality checks used before delta analysis}
-\label{tab:d2_quality_checks}
-\rowcolors{3}{black!4}{white}
-\begin{tabularx}{\textwidth}{l l X}
-\toprule
-Check & Result & Interpretation \\
-\midrule
-Mandatory fields present & Pass & All 14 events contain values for all required columns. \\
-Timestamp format and order & Pass & ISO timestamps are valid and strictly chronological. \\
-Activity mapping coverage & 13/14 mapped & One event (E03) is intentionally marked \texttt{NA} as an extra event. \\
-Scope completeness & Pass & First event equals scope start and last event equals scope end. \\
-\bottomrule
-\end{tabularx}
-\rowcolors{3}{}{}
-\end{table}
+\subsubsection{Observation Summary for Delta Analysis}
+The observation confirms the same overall routine boundary as Deliverable 1, but includes practical variation and coordination not present in the interview baseline. In particular, one extra coordination event (E03), one order change (E09 relative to A04/A05), and one explicit workaround (E10) are central for the delta sheet in Deliverable 3.
