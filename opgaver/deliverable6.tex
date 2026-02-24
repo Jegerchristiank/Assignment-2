@@ -13,58 +13,19 @@ Core workflow fields are generally present, while several context-heavy fields a
 This aligns with the Five Facets perspective (Data, Source, System, Task, Human) \parencite{mohammed2025fivefacets}.
 
 \subsubsection{Question 2: Method Selection Justification and Trade-offs}
-\begin{table}[H]
-\centering
-\footnotesize
-\caption{Selected methods from Part 3}
-\label{tab:d6_method_selection}
-\rowcolors{3}{black!4}{white}
-\begin{tabularx}{\textwidth}{
->{\raggedright\arraybackslash}p{0.11\textwidth}
->{\raggedright\arraybackslash}p{0.18\textwidth}
->{\raggedright\arraybackslash}p{0.12\textwidth}
->{\raggedright\arraybackslash}X
-}
-\toprule
-Method & Primary facets & RQ link & Why selected \\
-\midrule
-M2 & Data, Source, System & RQ1-3 & Baseline completeness check before further interpretation. \\
-M6 & Data, Task, Human & RQ1, RQ3 & Captures urgency and temporal representativity in one method. \\
-M8 (15 min) & Task, System, Human & RQ2 & Directly tests safety-critical communication conformance. \\
-M10 & Data, System, Task & RQ1 & Combines TAT metrics with batch-logging sensitivity. \\
-M11 & Human, Task, System & RQ1, RQ3 & Adds workload and actor-distribution context. \\
-\bottomrule
-\end{tabularx}
-\rowcolors{3}{}{}
-\end{table}
+I selected M2, M6, M8 (15 min), M10, and M11 to jointly cover all three RQs with minimum method redundancy. The full method-selection table is provided in Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d6_method_selection}.
 
-Non-selected methods (M1, M3, M4, M5, M7, M9) were excluded mainly due overlap or narrower relevance for the selected RQ balance. The core trade-off was breadth (cover all RQs) versus depth (detailed analysis per dimension).
+Non-selected methods (M1, M3, M4, M5, M7, M9) were excluded mainly because of overlap with selected methods or narrower relevance to the RQ set. The core trade-off was breadth (cross-RQ coverage) versus depth (more detailed probing of fewer dimensions).
 
 \subsubsection{Question 3: Results Interpretation by Method}
-\begin{table}[H]
-\centering
-\footnotesize
-\caption{Key results and interpretation}
-\label{tab:d6_method_results}
-\rowcolors{3}{black!4}{white}
-\begin{tabularx}{\textwidth}{
->{\raggedright\arraybackslash}p{0.10\textwidth}
->{\raggedright\arraybackslash}p{0.30\textwidth}
->{\raggedright\arraybackslash}X
->{\raggedright\arraybackslash}p{0.15\textwidth}
-}
-\toprule
-Method & Key result & Interpretation (incl. expectation check) & Main facet(s) \\
-\midrule
-M2 & High missingness in context attributes (e.g., \texttt{study\_uid} 134/150). & As expected; process-flow analysis is possible, but context-dependent inference is limited. & Data, Source \\
-M6 & Urgency skew: 15 stat/urgent vs 2 routine; shift imbalance (Day 11, Night 6, Evening 0). & As expected; representativity is uneven, so generalisation should be cautious. & Data, Task, Human \\
-M8 & 16 pass, 1 fail (critical case missing communication event). & Worked as intended; even one failed critical case is operationally important for RQ2. & Task, System, Human \\
-M10 & Batch logging suspected in 6/17; mean total TAT 147.93 min raw vs 198.50 min clean. & Most surprising output; RQ1 conclusions are highly sensitive to timestamp credibility. & Data, System, Task \\
-M11 & Events per role uneven (radiographer 64; resident 7; system actor high concentration). & As expected; workload concentration affects operational and modelling interpretation. & Human, Task, System \\
-\bottomrule
-\end{tabularx}
-\rowcolors{3}{}{}
-\end{table}
+Detailed per-method output is documented in Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d6_method_results}. The key interpretations are:
+\begin{itemize}
+  \item M2: High missingness in context attributes (e.g., \texttt{study\_uid} 134/150) confirms that flow-level analysis is feasible, but context-sensitive inference is constrained.
+  \item M6: Urgency and shift imbalance (15 stat/urgent vs 2 routine; Day 11, Night 6, Evening 0) indicates representativity limits for generalisation.
+  \item M8: 16 pass and 1 fail on critical communication shows overall conformance, but the single fail is clinically important for RQ2.
+  \item M10: 6/17 cases flagged for batch-logging patterns and large raw-vs-clean TAT gap (147.93 vs 198.50 min) makes timestamp credibility a central RQ1 risk.
+  \item M11: Uneven role distribution (radiographer 64 events, resident 7, system actor concentrated) indicates workload concentration that affects process interpretation.
+\end{itemize}
 
 \subsubsection{Question 4: Proposed DQ Dimension}
 The proposed dimension is \textit{Batch Logging Credibility}: whether timestamp structure reflects real-time documentation or delayed/post-hoc entry.
@@ -75,47 +36,10 @@ Motivating pattern: repeated timestamps and tight event clustering in specific c
   \item RQ2: communication delay can be masked,
   \item RQ3: artefactual timing patterns can leak into model development.
 \end{itemize}
-
-\begin{table}[H]
-\centering
-\small
-\caption{Facet mapping for Batch Logging Credibility}
-\label{tab:d6_custom_facet_mapping}
-\rowcolors{3}{black!4}{white}
-\begin{tabularx}{\textwidth}{l c X}
-\toprule
-Facet & Involvement & Justification \\
-\midrule
-Data & ++ & Timestamp integrity is the direct object of assessment. \\
-Source & ++ & Logging practice determines whether entries are real-time or delayed. \\
-System & + & Interface/workflow design can incentivise retrospective entry. \\
-Task & + & Timeliness-sensitive tasks are directly affected by timestamp quality. \\
-Human & + & Workload pressure shapes documentation behavior. \\
-\bottomrule
-\end{tabularx}
-\rowcolors{3}{}{}
-\end{table}
+The complete facet-mapping table is provided in Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d6_custom_facet_mapping}.
 
 \subsubsection{Question 5: Per-Facet Data Quality Synthesis}
-Custom DQ assessment method (Part 5 implementation excerpt):
-
-\begin{Verbatim}[breaklines=true,fontsize=\footnotesize]
-def my_custom_dq_method(df: pd.DataFrame):
-    rows = []
-    for case_id, cdf in df.groupby('case_id'):
-        n = len(cdf)
-        u = cdf['event_time'].nunique()
-        dup = n - u
-        dur = ((cdf['event_time'].max()-cdf['event_time'].min()).total_seconds()/60) if n > 1 else 0
-        score = (2 if dup >= 3 else 1 if dup > 0 else 0) + (2 if n >= 5 and dur < 2 else 0) + (1 if (u/n) < 0.5 else 0)
-        risk = 'high' if score >= 4 else ('medium' if score >= 2 else 'low')
-        rows.append({'case_id': case_id, 'risk_level': risk, 'risk_score': score})
-    out = pd.DataFrame(rows)
-    flagged = out[out['risk_level'].isin(['high', 'medium'])]
-    return {'case_flags': out,
-            'summary_metrics': {'total_cases': len(out), 'flagged_case_rate_pct': round(100*len(flagged)/len(out), 2)},
-            'examples': flagged.head(3).to_dict('records')}
-\end{Verbatim}
+The custom DQ method code (Part 5) is moved to Appendix~\ref{app:d6_custom_code}. The method scores each case for timestamp-risk using duplicate-time frequency, event-density over short duration, and low unique-timestamp ratio.
 
 Facet synthesis:
 \begin{itemize}
@@ -129,29 +53,7 @@ Facet synthesis:
 Most challenging facet: Human. With the available methods, tacit coordination logic is difficult to assess. Better assessment would combine log analysis with targeted qualitative validation.
 
 \subsubsection{Question 6: Invisible Work and System Design Implications}
-\begin{table}[H]
-\centering
-\footnotesize
-\caption{Invisible work not represented explicitly in the event log}
-\label{tab:d6_invisible_work}
-\rowcolors{3}{black!4}{white}
-\begin{tabularx}{\textwidth}{
->{\raggedright\arraybackslash}p{0.23\textwidth}
->{\raggedright\arraybackslash}p{0.18\textwidth}
->{\raggedright\arraybackslash}p{0.13\textwidth}
->{\raggedright\arraybackslash}X
->{\raggedright\arraybackslash}p{0.16\textwidth}
-}
-\toprule
-Activity from diagram & Why not logged? & Facet & Consequence & Capture option \\
-\midrule
-Radiologist-to-radiologist consultation & Verbal/ad hoc interaction & Human, Task & Understates collaborative interpretation work & Optional peer-consult event \\
-Clarification with ordering clinician & Often outside core system & System, Source & Communication-delay attribution may be misleading & Linked communication event \\
-Informal reprioritisation/handoff & Local coordination, not formal workflow step & Task, Human & Bottleneck and fairness analyses miss queue management & Priority-adjusted event with reason code \\
-\bottomrule
-\end{tabularx}
-\rowcolors{3}{}{}
-\end{table}
+The completed invisible-work table (minimum three activities) is provided in Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d6_invisible_work}.
 
 A model built only on log traces will overestimate formal linearity and underestimate coordination work. This parallels Part I directly: interview and observation differed in the same structural way as event log and workflow diagram.
 

@@ -12,37 +12,7 @@ The full machine-readable event log is submitted as a separate CSV artifact with
 The submitted CSV uses the following fields: \texttt{case\_id}, \texttt{event\_id}, \texttt{timestamp} (ISO datetime), \texttt{event\_label}, \texttt{actor}, \texttt{tool}, \texttt{context\_note}, and \texttt{related\_activity\_id} (A01-A09 or NA).
 
 \subsubsection{Observed Event Sequence (Report Excerpt)}
-Table~\ref{tab:d2_observed_excerpt} shows the key observed sequence used for comparison in Deliverable 3.
-
-\begin{table}[H]
-\centering
-\footnotesize
-\caption{Observed event-log excerpt (February 20, 2026)}
-\label{tab:d2_observed_excerpt}
-\rowcolors{3}{black!4}{white}
-\begin{tabularx}{\textwidth}{
->{\raggedright\arraybackslash}p{0.08\textwidth}
->{\raggedright\arraybackslash}p{0.16\textwidth}
->{\raggedright\arraybackslash}p{0.20\textwidth}
->{\raggedright\arraybackslash}p{0.12\textwidth}
->{\raggedright\arraybackslash}X
->{\raggedright\arraybackslash}p{0.07\textwidth}
-}
-\toprule
-Event & Timestamp & Event label & Tool & Context note & Ref. \\
-\midrule
-E01 & 2026-02-20 06:45 & Alarm rings and snooze & Smartphone alarm & One snooze before wake-up. & A01 \\
-E03 & 2026-02-20 06:52 & Reply to roommate message & Messaging app & Extra micro-coordination event. & NA \\
-E05 & 2026-02-20 06:57 & Toilet and shower & Bathroom & Hygiene block started later than interview expectation. & A03 \\
-E07 & 2026-02-20 07:12 & Start coffee and toast & Coffee machine, toaster & Breakfast preparation begins. & A05 \\
-E08 & 2026-02-20 07:16 & Switch breakfast to banana & Kitchen & Breakfast adapted due to no bread. & A05 \\
-E09 & 2026-02-20 07:18 & Pack bag & Backpack & Packing occurs after breakfast prep starts. & A04 \\
-E10 & 2026-02-20 07:21 & Find keys and borrow lock & Keys, messaging app & Workaround to solve missing item. & A08 \\
-E14 & 2026-02-20 07:30 & Leave apartment & Front door & End of observed routine boundary. & A09 \\
-\bottomrule
-\end{tabularx}
-\rowcolors{3}{}{}
-\end{table}
+The required observed event-sequence excerpt is provided in Appendix~\ref{app:part1_supporting}, Table~\ref{tab:d2_observed_excerpt}. In the main text, the key comparison anchors are E03 (extra coordination), E09 (order shift), and E10 (workaround).
 
 \subsubsection{Observation Summary for Delta Analysis}
 The observation confirms the same overall routine boundary as Deliverable 1, but includes practical variation and coordination not present in the interview baseline. In particular, one extra coordination event (E03), one order change (E09 relative to A04/A05), and one explicit workaround (E10) are central for the delta sheet in Deliverable 3.
