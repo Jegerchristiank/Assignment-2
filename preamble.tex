@@ -74,20 +74,6 @@
 % Customisation of default names
 \renewcommand{\contentsname}{Contents}
 
-% Approximate raw text count (chars incl. spaces) for chapters 02-10.
-% Excludes tables/figures, citations, references, and front/back matter.
-\newcommand{\RawCharCount}{0}
-\newcommand{\RawPageCount}{0}
-\newcommand{\RawCountSummary}{\RawCharCount\ tegn (ca.\ \RawPageCount\ sider)}
-\AtBeginDocument{%
-  \ifdefined\directlua
-    \directlua{dofile("rawcount.lua")}
-  \else
-    \typeout{RAW_COUNT: LuaTeX not available (use LuaLaTeX to enable).}
-  \fi
-}
-
-
 % Legal reference helpers.
 \newcommand{\lawpar}[1]{\S~#1}
 \newcommand{\lawart}[1]{art.~#1}
