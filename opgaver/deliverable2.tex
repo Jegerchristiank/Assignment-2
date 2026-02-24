@@ -8,9 +8,7 @@ In this individual setup, the participant self-recorded the routine performance 
 
 Before observation, a short observation guide was prepared to keep focus on sequence, tools, interaction points, and deviations from the interview baseline. During observation, notes were split into two types in line with course practice: descriptive notes (what happened, when, with which tool) and reflexive notes (uncertainties, interpretation candidates, and follow-up questions). Only descriptive evidence was transferred directly to the event log.
 
-The full machine-readable log is stored in:
-
-\texttt{kode/part1\_event\_log.csv}
+The full machine-readable event log is submitted as a separate CSV artifact together with the report.
 
 An event boundary was registered when action intention, tool context, or coordination state changed. This gives enough granularity for ordering and timing analysis without over-fragmenting the trace.
 
@@ -22,6 +20,7 @@ The event log uses one case identifier and a sequence of timestamped events. Tab
 \small
 \caption{Field definitions for the observed event log}
 \label{tab:d2_fields}
+\rowcolors{3}{black!4}{white}
 \begin{tabularx}{\textwidth}{l l X}
 \toprule
 Field & Type & Description \\
@@ -36,6 +35,7 @@ Field & Type & Description \\
 \texttt{related\_activity\_id} & String & Mapping to interview model activity (\texttt{A01-A09}) or \texttt{NA}. \\
 \bottomrule
 \end{tabularx}
+\rowcolors{3}{}{}
 \end{table}
 
 \subsubsection{Observed Event Log}
@@ -46,33 +46,35 @@ Table~\ref{tab:d2_observed_excerpt} shows the observed sequence used in Delivera
 \footnotesize
 \caption{Observed event log (February 20, 2026)}
 \label{tab:d2_observed_excerpt}
+\rowcolors{3}{black!4}{white}
 \begin{tabularx}{\textwidth}{
->{\raggedright\arraybackslash}p{0.08\textwidth}
->{\raggedright\arraybackslash}p{0.16\textwidth}
->{\raggedright\arraybackslash}p{0.19\textwidth}
->{\raggedright\arraybackslash}p{0.13\textwidth}
+>{\raggedright\arraybackslash}p{0.07\textwidth}
+>{\raggedright\arraybackslash}p{0.15\textwidth}
+>{\raggedright\arraybackslash}p{0.21\textwidth}
+>{\raggedright\arraybackslash}p{0.12\textwidth}
 >{\raggedright\arraybackslash}X
->{\raggedright\arraybackslash}p{0.08\textwidth}
+>{\raggedright\arraybackslash}p{0.06\textwidth}
 }
 \toprule
 Event & Timestamp & Event label & Tool & Context note & Ref. \\
 \midrule
-E01 & 2026-02-20T06:45:00 & AlarmRingsAndSnooze & Smartphone alarm & Alarm rings and is snoozed once. & A01 \\
-E02 & 2026-02-20T06:50:00 & StopAlarmAndCheckPhone & Smartphone & Alarm is stopped; notifications checked. & A01 \\
-E03 & 2026-02-20T06:52:00 & ReplyToRoommateMessage & Messaging app & Short text exchange about a shared household item. & NA \\
-E04 & 2026-02-20T06:55:00 & DrinkWater & Kitchen glass & Drinks one glass of water. & A02 \\
-E05 & 2026-02-20T06:57:00 & ToiletAndShower & Bathroom & Combined hygiene block, near lower-bound duration and later than expected window. & A03 \\
-E06 & 2026-02-20T07:07:00 & DressForDay & Wardrobe & Clothing selected and put on. & A04 \\
-E07 & 2026-02-20T07:12:00 & StartCoffeeAndToast & Coffee machine, toaster & Begins breakfast preparation. & A05 \\
-E08 & 2026-02-20T07:16:00 & SwitchBreakfastToBanana & Kitchen & Toast cancelled due to no bread. & A05 \\
-E09 & 2026-02-20T07:18:00 & PackBag & Backpack & Bag packed after breakfast prep started. & A04 \\
-E10 & 2026-02-20T07:21:00 & FindKeysAndBorrowLock & Keys, messaging app & Missing lock resolved via roommate text. & A08 \\
-E11 & 2026-02-20T07:23:00 & BrushTeeth & Toothbrush & Brushing done before final coffee transfer. & A07 \\
-E12 & 2026-02-20T07:26:00 & CheckWeatherAndBusApp & Weather app, transport app & Route and weather checked before leaving. & A08 \\
-E13 & 2026-02-20T07:28:00 & PourCoffeeToGo & Thermos & Coffee moved to thermos; no seated breakfast event. & A05 \\
-E14 & 2026-02-20T07:30:00 & LeaveApartment & Front door & Participant leaves apartment. & A09 \\
+E01 & 2026-02-20 06:45 & Alarm rings and snooze & Smartphone alarm & Alarm rings and is snoozed once. & A01 \\
+E02 & 2026-02-20 06:50 & Stop alarm and check phone & Smartphone & Alarm is stopped; notifications checked. & A01 \\
+E03 & 2026-02-20 06:52 & Reply to roommate message & Messaging app & Short text exchange about a shared household item. & NA \\
+E04 & 2026-02-20 06:55 & Drink water & Kitchen glass & Drinks one glass of water. & A02 \\
+E05 & 2026-02-20 06:57 & Toilet and shower & Bathroom & Combined hygiene block, near lower-bound duration and later than expected window. & A03 \\
+E06 & 2026-02-20 07:07 & Dress for day & Wardrobe & Clothing selected and put on. & A04 \\
+E07 & 2026-02-20 07:12 & Start coffee and toast & Coffee machine, toaster & Begins breakfast preparation. & A05 \\
+E08 & 2026-02-20 07:16 & Switch breakfast to banana & Kitchen & Toast cancelled due to no bread. & A05 \\
+E09 & 2026-02-20 07:18 & Pack bag & Backpack & Bag packed after breakfast prep started. & A04 \\
+E10 & 2026-02-20 07:21 & Find keys and borrow lock & Keys, messaging app & Missing lock resolved via roommate text. & A08 \\
+E11 & 2026-02-20 07:23 & Brush teeth & Toothbrush & Brushing done before final coffee transfer. & A07 \\
+E12 & 2026-02-20 07:26 & Check weather and bus app & Weather app, transport app & Route and weather checked before leaving. & A08 \\
+E13 & 2026-02-20 07:28 & Pour coffee to-go & Thermos & Coffee moved to thermos; no seated breakfast event. & A05 \\
+E14 & 2026-02-20 07:30 & Leave apartment & Front door & Participant leaves apartment. & A09 \\
 \bottomrule
 \end{tabularx}
+\rowcolors{3}{}{}
 \end{table}
 
 \subsubsection{Contextual Notes, Deviations, and Interruptions}
@@ -95,6 +97,7 @@ For the selected scope (alarm-to-door-close), all major actions are timestamped 
 \small
 \caption{Event-log quality checks used before delta analysis}
 \label{tab:d2_quality_checks}
+\rowcolors{3}{black!4}{white}
 \begin{tabularx}{\textwidth}{l l X}
 \toprule
 Check & Result & Interpretation \\
@@ -105,4 +108,5 @@ Activity mapping coverage & 13/14 mapped & One event (E03) is intentionally mark
 Scope completeness & Pass & First event equals scope start and last event equals scope end. \\
 \bottomrule
 \end{tabularx}
+\rowcolors{3}{}{}
 \end{table}
