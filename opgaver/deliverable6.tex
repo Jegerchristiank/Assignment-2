@@ -1,60 +1,37 @@
 \subsection{Deliverable 6: Part II Reflection Questions}
 \label{sec:deliverable6}
 
-\subsubsection{Question 1: Initial Exploration and Relevance to the Three Research Questions}
-The dataset contains 150 events, 17 cases, 14 columns, and 12 activity types. The recorded period spans 2026-01-12 07:45 to 2026-01-13 08:46.
+\begin{enumerate}
+\item \textbf{Initial exploration and relevance to the three research questions.}  
+The dataset contains 150 events, 17 cases, 14 columns, and 12 activity types across 2026-01-12 07:45 to 2026-01-13 08:46. Core workflow fields are present, while context-heavy fields are sparse (e.g., \texttt{study\_uid}, \texttt{series\_count}, \texttt{instance\_count}, \texttt{icd11\_code}). Following the \textit{Five Facets} framework, this means the dataset is stronger for \textit{Task/System} sequence analysis than for rich \textit{Data/Source/Human} interpretation \parencite{mohammed2025fivefacets}. Applied to this case, the file can support RQ1 (\textit{TAT}/bottlenecks), RQ2 (\textit{conformance} for critical communication), and RQ3 (\textit{representativity} and workload patterns), but with explicit limits on contextual inference.
 
-Core workflow fields are generally present, while several context-heavy fields are sparse (e.g., \texttt{study\_uid}, \texttt{series\_count}, \texttt{instance\_count}, \texttt{icd11\_code}). If data quality is assumed adequate, the file can support:
+\item \textbf{Method selection justification and trade-offs.}  
+M2, M6, M8 (15 min), M10, and M11 were selected as a \textit{coverage portfolio}: together they cover all three RQs with low redundancy across facets. The full selection is documented in Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d6_method_selection}. Non-selected methods (M1, M3, M4, M5, M7, M9) were excluded due to overlap or narrower RQ relevance. The core trade-off was breadth across \textit{facets} versus depth in fewer dimensions.
+
+\item \textbf{Results interpretation by method.}  
+Chapter 27 explains that \textit{process mining} uses temporal event sequences to reveal common pathways and frequent exceptions \parenciteshort{guidehealthinformatics2026ch27}. Applied here, Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d6_method_results} shows:
 \begin{itemize}
-  \item RQ1: turnaround-time and bottleneck analysis,
-  \item RQ2: conformance checks for critical communication,
-  \item RQ3: representativity/workload patterns relevant for triage modelling.
-\end{itemize}
-This aligns with the Five Facets perspective (Data, Source, System, Task, Human) \parencite{mohammed2025fivefacets}.
-
-\subsubsection{Question 2: Method Selection Justification and Trade-offs}
-I selected M2, M6, M8 (15 min), M10, and M11 to jointly cover all three RQs with minimum method redundancy. The full method-selection table is provided in Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d6_method_selection}.
-
-Non-selected methods (M1, M3, M4, M5, M7, M9) were excluded mainly because of overlap with selected methods or narrower relevance to the RQ set. The core trade-off was breadth (cross-RQ coverage) versus depth (more detailed probing of fewer dimensions).
-
-\subsubsection{Question 3: Results Interpretation by Method}
-Detailed per-method output is documented in Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d6_method_results}. The key interpretations are:
-\begin{itemize}
-  \item M2: High missingness in context attributes (e.g., \texttt{study\_uid} 134/150) confirms that flow-level analysis is feasible, but context-sensitive inference is constrained.
-  \item M6: Urgency and shift imbalance (15 stat/urgent vs 2 routine; Day 11, Night 6, Evening 0) indicates representativity limits for generalisation.
-  \item M8: 16 pass and 1 fail on critical communication shows overall conformance, but the single fail is clinically important for RQ2.
-  \item M10: 6/17 cases flagged for batch-logging patterns and large raw-vs-clean TAT gap (147.93 vs 198.50 min) makes timestamp credibility a central RQ1 risk.
-  \item M11: Uneven role distribution (radiographer 64 events, resident 7, system actor concentrated) indicates workload concentration that affects process interpretation.
+  \item M2: high context missingness (e.g., \texttt{study\_uid} 134/150), so flow-level findings are feasible but context-sensitive claims are weaker.
+  \item M6: urgency and shift imbalance (15 stat/urgent vs 2 routine; Day 11, Night 6, Evening 0), so \textit{representativity} for broad generalisation is limited.
+  \item M8: 16 pass and 1 fail on critical communication; overall \textit{conformance} is high, but the single fail remains operationally important for RQ2.
+  \item M10: 6/17 cases with \textit{batch-logging} signatures and a large raw-vs-clean TAT gap (147.93 vs 198.50 min), making timestamp credibility a central RQ1 risk.
+  \item M11: uneven actor distribution (radiographer 64 events, resident 7, system actor concentration), indicating workload concentration affecting interpretation.
 \end{itemize}
 
-\subsubsection{Question 4: Proposed DQ Dimension}
-The proposed dimension is \textit{Batch Logging Credibility}: whether timestamp structure reflects real-time documentation or delayed/post-hoc entry.
+\item \textbf{Proposed DQ dimension.}  
+The proposed dimension is \textit{Batch Logging Credibility}: whether timestamp structure reflects real-time documentation or delayed/post-hoc entry. The motivating pattern is repeated timestamps and tight clustering in cases such as CXR-013 and CXR-011. In this context, low credibility biases RQ1 (\textit{TAT} and bottlenecks), can mask RQ2 communication delay, and can leak artefactual timing patterns into RQ3 modelling. Facet mapping is documented in Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d6_custom_facet_mapping}.
 
-Motivating pattern: repeated timestamps and tight event clustering in specific cases (notably CXR-013 and CXR-011). RQ impact:
+\item \textbf{Per-facet data quality synthesis.}  
+The custom method code is documented in Appendix~\ref{app:d6_custom_code}. It scores per-case timestamp risk from duplicate-time frequency, short-window event density, and low unique-timestamp ratio.
 \begin{itemize}
-  \item RQ1: TAT/bottleneck estimates can be biased,
-  \item RQ2: communication delay can be masked,
-  \item RQ3: artefactual timing patterns can leak into model development.
+  \item \textit{Data}: missing context fields and timestamp artefacts reduce precision.
+  \item \textit{Source}: mixed real-time and delayed logging reduces reliability.
+  \item \textit{System}: safety-relevant communication events can be missing despite completed workflow.
+  \item \textit{Task}: skewed representativity limits external validity for optimisation/triage.
+  \item \textit{Human}: tacit coordination is weakly represented in logs.
 \end{itemize}
-The complete facet-mapping table is provided in Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d6_custom_facet_mapping}.
+Most challenging facet is \textit{Human}; stronger assessment would combine log analytics with targeted qualitative validation.
 
-\subsubsection{Question 5: Per-Facet Data Quality Synthesis}
-The custom DQ method code (Part 5) is moved to Appendix~\ref{app:d6_custom_code}. The method scores each case for timestamp-risk using duplicate-time frequency, event-density over short duration, and low unique-timestamp ratio.
-
-Facet synthesis:
-\begin{itemize}
-  \item Data: missing context fields and timestamp artefacts reduce analytical precision.
-  \item Source: mixed real-time vs delayed logging behavior reduces reliability.
-  \item System: safety-relevant communication events may be absent despite workflow completion.
-  \item Task: skewed representativity limits external validity for optimisation and triage.
-  \item Human: informal coordination remains weakly represented in logs.
-\end{itemize}
-
-Most challenging facet: Human. With the available methods, tacit coordination logic is difficult to assess. Better assessment would combine log analysis with targeted qualitative validation.
-
-\subsubsection{Question 6: Invisible Work and System Design Implications}
-The completed invisible-work table (minimum three activities) is provided in Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d6_invisible_work}.
-
-A model built only on log traces will overestimate formal linearity and underestimate coordination work. This parallels Part I directly: interview and observation differed in the same structural way as event log and workflow diagram.
-
-In Chapter 9 terms, this is a formal/informal balance problem \parencite{guidehealthinformatics2026ch9and27}: complete formalisation is neither realistic nor always desirable. A practical change is lightweight optional contextual events (consultation, reprioritisation, communication intent), designed to improve visibility without imposing heavy documentation burden.
+\item \textbf{Invisible work and system design implications.}  
+The completed invisible-work table is in Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d6_invisible_work}. A model based only on log traces tends to overestimate formal linearity and underestimate coordination work. In Chapter 9 terms, this is a \textit{formalisation continuum} problem: complete formalisation is neither realistic nor always desirable \parencite{guidehealthinformatics2026ch9and27}. This aligns with the declarative workflow argument that robust process support should balance \textit{flexibility} and \textit{constraints}, not force one rigid path \parencite{vanderaalst2009declarative}. In this case, a practical improvement is lightweight optional contextual events (consultation, reprioritisation reason, communication intent) to improve visibility without heavy documentation burden.
+\end{enumerate}
