@@ -45,24 +45,33 @@ The main trade-off was breadth versus depth. The selected five methods gave comp
 \caption{Key outputs and interpretation from selected methods}
 \label{tab:d6_method_results}
 \begin{tabularx}{\textwidth}{
->{\raggedright\arraybackslash}p{0.13\textwidth}
->{\raggedright\arraybackslash}p{0.26\textwidth}
+>{\raggedright\arraybackslash}p{0.11\textwidth}
+>{\raggedright\arraybackslash}p{0.21\textwidth}
 >{\raggedright\arraybackslash}X
->{\raggedright\arraybackslash}p{0.15\textwidth}
+>{\raggedright\arraybackslash}p{0.12\textwidth}
+>{\raggedright\arraybackslash}p{0.16\textwidth}
 }
 \toprule
-Method & Key result(s) & Interpretation & Primary facet(s) \\
+Method & Key result(s) & Interpretation & Primary facet(s) & Expectation check / improvement \\
 \midrule
-M2 & High missingness in context fields (e.g., \texttt{study\_uid} 134/150; \texttt{icd11\_code} 131/150). & The log is usable for process-flow analysis, but several context-sensitive interpretations remain weakly supported. & Data, Source \\
-M6 & Urgency: 15 stat/urgent, 2 routine. Temporal distribution: Day 11, Night 6, Evening 0. & Representativity is uneven across urgency and shifts, so generalisation to broader operations should be cautious. & Data, Task, Human \\
-M8 (15 min) & 16 cases pass and 1 case fails (\texttt{CXR-004}: missing critical communication event). & A single failed critical case is still meaningful in RQ2 because safety events have low tolerance for missing communication traces. & Task, System, Human \\
-M10 & Batch logging suspected in 6/17 cases (35.29\%). Mean total TAT: 147.93 min raw vs 198.50 min after excluding suspected batch cases. & Performance conclusions are sensitive to timestamp credibility. Without quality controls, RQ1 can be systematically biased. & Data, System, Task \\
-M11 & Events per role: radiographer 64, senior 31, system 31, clinician 17, resident 7. Workload outlier: \texttt{RIS System} (16 cases). & Work appears unevenly distributed. This matters for both operational interpretation and AI training representativity. & Human, Task, System \\
+M2 & High missingness in context fields (e.g., \texttt{study\_uid} 134/150; \texttt{icd11\_code} 131/150). & The log is usable for process-flow analysis, but several context-sensitive interpretations remain weakly supported. & Data, Source & Matched expectation. Improvement: separate structural missingness from true incompleteness by activity context. \\
+M6 & Urgency: 15 stat/urgent, 2 routine. Temporal distribution: Day 11, Night 6, Evening 0. & Representativity is uneven across urgency and shifts, so generalisation to broader operations should be cautious. & Data, Task, Human & Matched expectation. Improvement: test stability on longer time windows and additional sites. \\
+M8 (15 min) & 16 cases pass and 1 case fails (\texttt{CXR-004}: missing critical communication event). & A single failed critical case is still meaningful in RQ2 because safety events have low tolerance for missing communication traces. & Task, System, Human & Matched expectation. Improvement: add severity-aware conformance tiers and communication-channel metadata. \\
+M10 & Batch logging suspected in 6/17 cases (35.29\%). Mean total TAT: 147.93 min raw vs 198.50 min after excluding suspected batch cases. & Performance conclusions are sensitive to timestamp credibility. Without quality controls, RQ1 can be systematically biased. & Data, System, Task & Partly surprising: raw-clean gap larger than expected. Improvement: report clean and raw metrics by default. \\
+M11 & Events per role: radiographer 64, senior 31, system 31, clinician 17, resident 7. Workload outlier: \texttt{RIS System} (16 cases). & Work appears unevenly distributed. This matters for both operational interpretation and AI training representativity. & Human, Task, System & Matched expectation. Improvement: include shift-normalised workload and role-specific case complexity. \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-The method outputs were largely in line with expectations: M2 and M6 confirmed baseline quality and representativity concerns, M8 produced a clear safety-relevant signal, and M10 showed that timestamp quality changes efficiency conclusions materially. The most surprising result was the size of the raw-versus-clean TAT gap in M10. A practical improvement would be to pair each timing method with explicit timestamp-quality filters by default.
+The method outputs were largely in line with expectations. The main surprise was the size of the raw-versus-clean TAT gap in M10, which directly affects RQ1 interpretation.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.88\textwidth]{billeder/d6_notebook_quality_overview.png}
+  \caption{Notebook-derived result figure: Method 6 (shift distribution) and Method 8 (critical communication conformance)}
+  \label{fig:d6_notebook_overview}
+  \FigureSource{Generated from notebook outputs (\texttt{res\_m6} and \texttt{res\_m8}) in \texttt{assignment.ipynb}.}
+\end{figure}
 
 \subsubsection{Question 4: Proposed DQ Dimension and Facet Mapping}
 The proposed dimension is \textit{Batch Logging Credibility}. It assesses whether timestamp structure looks like real-time documentation or delayed/post-hoc registration.
@@ -155,7 +164,25 @@ Human & + & Workload and local routines influence when events are documented. \\
 \end{table}
 
 \subsubsection{Question 5: Per-Facet Data Quality Synthesis}
-The custom method code used in this synthesis is included in Question 4, where the Part 5 implementation is documented.
+For consistency with the reflection-question wording, the custom method is included again here as a compact implementation excerpt used in the synthesis:
+
+\begin{Verbatim}[breaklines=true,fontsize=\footnotesize]
+def my_custom_dq_method(df: pd.DataFrame):
+    case_flags = []
+    for case_id, case_df in df.groupby('case_id'):
+        n = len(case_df)
+        u = case_df['event_time'].nunique()
+        dup = n - u
+        dur = ((case_df['event_time'].max() - case_df['event_time'].min()).total_seconds() / 60) if n > 1 else 0.0
+        score = (2 if dup >= 3 else 1 if dup > 0 else 0) + (2 if n >= 5 and dur < 2 else 0) + (1 if (u / n) < 0.5 else 0)
+        level = 'high' if score >= 4 else ('medium' if score >= 2 else 'low')
+        case_flags.append({'case_id': case_id, 'risk_level': level, 'risk_score': score})
+    case_flags = pd.DataFrame(case_flags)
+    flagged = case_flags[case_flags['risk_level'].isin(['high', 'medium'])]
+    return {'case_flags': case_flags,
+            'summary_metrics': {'total_cases': len(case_flags), 'flagged_case_rate_pct': round(100 * len(flagged) / len(case_flags), 2)},
+            'examples': flagged.head(3).to_dict('records')}
+\end{Verbatim}
 
 \begin{table}[H]
 \centering
