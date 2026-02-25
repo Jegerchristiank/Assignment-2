@@ -1,76 +1,109 @@
-\subsection{Deliverable 6: Part II Reflection Questions}
+\subsection{Deliverable 6: Part II Reflections}
 \label{sec:deliverable6}
 
 \begin{enumerate}
-\item \textbf{Initial exploration. What kind of data is logged in the file? Assuming data quality is good, how can the data be used to answer the RQs?}
+\item \textbf{Initial exploration}
+\textbf{Q1.a Data type in the log}\par
+The file is a case-based radiology process event log. Each row is one event with case identifier, timestamp, activity label, actor, role, and optional clinical/technical context (e.g., modality, report-linked fields, notes). From exploration outputs in Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d5_log_profile}, the dataset contains 150 events, 17 cases, and 12 unique logged activities (activity list in Appendix~\ref{app:d5_invisible_work}, Table~\ref{tab:d5_logged_activities}).
 
-\par\textbf{Answer}\par
-The file is a process event log from a radiology workflow. Each row represents an event linked to a case (\texttt{case\_id}) and includes an event timestamp, activity label, actor, role, and optional clinical/technical context fields such as modality and report metadata. From the Part 1 exploration (Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d5_log_profile}), the dataset contains 150 events across 17 cases, covering 12 unique logged activities (Appendix~\ref{app:d5_invisible_work}, Table~\ref{tab:d5_logged_activities}).
-
-Assuming good data quality, this type of log can support all three RQs directly:
+\textbf{Q1.b RQ use under good data quality}\par
+If quality is good, the same structure supports all three research questions:
 \begin{itemize}
-  \item \textbf{RQ1 (workflow efficiency/bottlenecks):} timestamps and ordered activities can be used for turnaround-time calculations, handoff delays, and bottleneck localization.
-  \item \textbf{RQ2 (critical finding communication):} the presence and timing of \texttt{Critical communication} events can be checked against safety-relevant conformance expectations.
-  \item \textbf{RQ3 (AI triage development):} case- and event-level features (timing, urgency proxies, role patterns, workflow pathways) can be extracted as candidate training signals.
+  \item \textbf{RQ1:} timestamps and activity order allow bottleneck and turnaround-time analysis.
+  \item \textbf{RQ2:} critical communication events can be checked for conformance and timeliness.
+  \item \textbf{RQ3:} event traces can be transformed into candidate features for triage-model development.
+\end{itemize}
+The log is therefore fit-for-purpose in principle, but only under acceptable completeness, representativity, timeliness, and provenance quality.
+
+\item \textbf{Method selection justification}
+\textbf{Q2.a Completed method-selection table}\par
+The completed table is included in Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d5_method_selection}. Selected methods: \textbf{M2, M6, M8, M10, M11}.
+
+\textbf{Q2.b Selected methods and rationale}\par
+The selected set was chosen to cover all RQs with minimal overlap:
+\begin{itemize}
+  \item \textbf{M2:} baseline completeness gate before downstream interpretation.
+  \item \textbf{M6:} representativity of urgency/shift context for generalisability.
+  \item \textbf{M8:} direct safety-critical communication test (RQ2 core).
+  \item \textbf{M10:} performance metrics with timestamp-credibility sensitivity (RQ1 core).
+  \item \textbf{M11:} workload concentration patterns relevant to RQ1 and RQ3.
 \end{itemize}
 
-So the basic data structure is appropriate for the assignment goals, but only if completeness, representativity, timeliness, and provenance are sufficiently trustworthy.
-
-\item \textbf{Method selection justification. Include your completed method selection table from Part 3. Additionally, answer why you did not choose the other methods, what trade-offs were considered, and how RQs influenced selection.}
-
-\par\textbf{Answer}\par
-I selected five methods: \textbf{M2, M6, M8, M10, and M11}. The completed selection table from Part 3 is included in Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d5_method_selection}. The main logic was to cover all three RQs with complementary methods and minimal redundancy:
+\textbf{Q2.c Deprioritised methods and rationale}\par
+Methods were deprioritised mainly because of scope and overlap:
 \begin{itemize}
-  \item \textbf{M2} gives a baseline quality gate (what fields can be trusted at all).
-  \item \textbf{M6} evaluates representativity of case context (urgency/shift coverage), important for generalisability.
-  \item \textbf{M8} directly targets safety-critical communication behavior for RQ2.
-  \item \textbf{M10} links operational performance metrics to timestamp credibility, which is central for RQ1.
-  \item \textbf{M11} adds human/workload structure that matters for both process interpretation and model-development realism (RQ1, RQ3).
+  \item \textbf{M1:} useful schema check, but lower analytical value after basic integrity is confirmed.
+  \item \textbf{M3:} ICD-11 format checks are useful, but missingness reduced immediate explanatory gain.
+  \item \textbf{M4:} partly overlaps M11; M11 gave clearer workload concentration outputs.
+  \item \textbf{M5:} modality case-mix useful, but less central than urgency/shift representativity for this report.
+  \item \textbf{M7:} temporal-conformance value partly overlapped M10 timestamp-credibility analysis.
+  \item \textbf{M9:} clinically relevant, but less central for cross-RQ synthesis in the selected scope.
 \end{itemize}
 
-I did \emph{not} choose the other methods for pragmatic reasons, not because they were invalid:
+\textbf{Q2.d Trade-offs considered}\par
+Main trade-off: breadth versus depth. Running five methods gave full RQ coverage while keeping interpretation coherent rather than fragmented across too many partially redundant outputs.
+
+\textbf{Q2.e RQ1--RQ3 influence on selection}\par
+RQ1 drove M10 and M11, RQ2 drove M8, and RQ3 drove representativity/provenance emphasis (M6 plus interpretation from M2 and custom method). This ensured each RQ had at least one direct method and supporting cross-checks.
+
+\item \textbf{Results interpretation}
+Key outputs are summarised in Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d5_key_results}, with figures in Figures~\ref{fig:d5_viz_missingness}--\ref{fig:d5_viz_workload}.
+
+\textbf{Method 2 (M2: Completeness)}
 \begin{itemize}
-  \item \textbf{M1 (schema validation):} useful as a quick technical gate, but less informative once basic schema integrity is confirmed; M2 gave richer diagnostic value.
-  \item \textbf{M3 (ICD-11 format accuracy):} relevant, but high missingness in coding fields limited immediate explanatory value for the selected RQs.
-  \item \textbf{M4 (actor/role representativity):} partially overlaps M11; I prioritized M11 because it gives clearer workload concentration outputs.
-  \item \textbf{M5 (modality case mix):} useful for domain realism, but narrowed scope; less central than urgency/shift representativity for this report's RQ emphasis.
-  \item \textbf{M7 (temporal sequence conformance):} informative, but parts of the timestamp-credibility issue were already captured via M10 batch-logging sensitivity.
-  \item \textbf{M9 (modality-specific semantic checks):} clinically meaningful, but not as directly tied to cross-RQ synthesis as the selected set.
+  \item \textbf{Key result:} high missingness in context fields (e.g., \texttt{study\_uid} 134/150, \texttt{modality} 101/150).
+  \item \textbf{Interpretation:} core sequence analysis remains possible, but contextual/clinical interpretation is constrained.
+  \item \textbf{Expectation check and improvement:} Expected direction confirmed; improvement would require stricter field-population rules at source.
+  \item \textbf{Expectation status:} Yes, mostly.
+  \item \textbf{Primary facets informed:} Data, Source, System.
 \end{itemize}
 
-The key trade-off was breadth versus interpretability. Running five methods allowed full RQ coverage while still leaving space for deep interpretation and synthesis in Deliverable 6.
+\textbf{Method 6 (M6: Representativity)}
+\begin{itemize}
+  \item \textbf{Key result:} urgency and shift skew (15 stat/urgent, 2 routine; Day 11, Night 6, Evening 0).
+  \item \textbf{Interpretation:} observed process is not evenly representative across operational contexts.
+  \item \textbf{Expectation check and improvement:} Some skew expected; magnitude was larger than expected. Improvement: stratified sampling or longer capture window.
+  \item \textbf{Expectation status:} Partly; direction yes, magnitude underestimated.
+  \item \textbf{Primary facets informed:} Data, Task, Human.
+\end{itemize}
 
-\item \textbf{Results interpretation. Provide detailed interpretation of results from each chosen method (key results, interpretation, expectation check, and primary facets).}
+\textbf{Method 8 (M8: Critical communication conformance)}
+\begin{itemize}
+  \item \textbf{Key result:} 16 pass, 1 fail (\texttt{CXR-004} missing critical communication event).
+  \item \textbf{Interpretation:} near-compliance overall, but one missing communication event is still a material safety signal.
+  \item \textbf{Expectation check and improvement:} High pass rate expected; failure still important. Improvement: mandatory critical-communication traceability.
+  \item \textbf{Expectation status:} Yes on overall level, but failure remains meaningful.
+  \item \textbf{Primary facets informed:} Task, System, Human.
+\end{itemize}
 
-\par\textbf{Answer}\par
-Key outputs are summarised in Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d5_key_results}, with supporting plots in Figures~\ref{fig:d5_viz_missingness}--\ref{fig:d5_viz_workload}.
+\textbf{Method 10 (M10: TAT + batch-logging detection)}
+\begin{itemize}
+  \item \textbf{Key result:} mean total TAT 147.93 min (raw) vs 198.50 min (clean); 6/17 flagged (35.29\%).
+  \item \textbf{Interpretation:} performance conclusions are highly sensitive to timestamp credibility and entry behavior.
+  \item \textbf{Expectation check and improvement:} Some sensitivity expected; effect size was surprising. Improvement: explicit entry-mode metadata and real-time logging controls.
+  \item \textbf{Expectation status:} Partly.
+  \item \textbf{Primary facets informed:} Data, System, Task.
+\end{itemize}
 
-\textbf{Method 2 (Completeness).}
-The strongest result was extensive missingness in context fields (for example \texttt{study\_uid} 134/150, \texttt{modality} 101/150). This matched my expectation that administrative/process fields would be more complete than rich clinical context. It means sequence-based process analysis is feasible, but finer explanatory analysis is weakened. This primarily informs the \textbf{Data}, \textbf{Source}, and \textbf{System} facets.
+\textbf{Method 11 (M11: Workload distribution)}
+\begin{itemize}
+  \item \textbf{Key result:} events by role: radiographer 64, system 31, senior 31, clinician 17, resident 7.
+  \item \textbf{Interpretation:} workload and visibility are concentrated, shaping both process interpretation and AI-readiness assumptions.
+  \item \textbf{Expectation check and improvement:} Concentration expected and confirmed. Improvement: compare with planned staffing and shift schedules.
+  \item \textbf{Expectation status:} Yes.
+  \item \textbf{Primary facets informed:} Human, Task, System.
+\end{itemize}
 
-\textbf{Method 6 (Representativity).}
-Results showed clear skew (15 stat/urgent vs 2 routine; Day 11, Night 6, Evening 0). I expected some imbalance, but not this magnitude. The implication is that estimates of ``typical'' flow are conditional on a narrow case mix. This directly affects generalisation for RQ1 and especially RQ3. Primary facets: \textbf{Data}, \textbf{Task}, \textbf{Human}.
+Across methods, the biggest cross-cutting insight is that conclusions become much less stable when representativity and timestamp credibility issues are accounted for.
 
-\textbf{Method 8 (Critical communication conformance).}
-Using a 15-minute threshold, 16 cases passed and 1 failed (\texttt{CXR-004} missing communication event). I expected high compliance, and that was broadly confirmed, but the failed critical case is still clinically significant: rare events matter in patient-safety analysis. This result primarily informs \textbf{Task}, \textbf{System}, and \textbf{Human}.
+\item \textbf{Proposed DQ dimension}
+\textbf{Q4.a Dimension definition}\par
+The proposed custom DQ dimension is \textbf{operational authenticity}: whether logged traces represent real clinical workflow rather than test/training/administrative artifacts.
 
-\textbf{Method 10 (Turnaround time with batch-logging detection).}
-The key finding was high sensitivity of TAT conclusions to timestamp credibility: mean total TAT changed from 147.93 minutes (raw) to 198.50 minutes (clean), with 6/17 cases flagged for suspected batch logging (35.29\%). I expected some effect, but the size of the difference was larger than expected. This indicates that process ``speed'' may be underestimated if logging behavior is not accounted for. Primary facets: \textbf{Data}, \textbf{System}, \textbf{Task}.
+\textbf{Q4.b Motivation from exploration evidence}\par
+In exploration code (Part 5), case \texttt{TEST-001} was flagged by multiple contamination signals: non-standard case ID, training/test marker in notes (\texttt{TRAINING CASE - DO NOT PROCESS}), administrative actor involvement, and a one-event trace. This pattern is not well covered by standard completeness/conformance checks but can bias downstream analysis.
 
-\textbf{Method 11 (Workload distribution).}
-Events were concentrated in a few roles (radiographer 64, system 31, senior 31, clinician 17, resident 7). This aligned with expectation that work is unevenly distributed, but it also highlighted that role concentration can shape both observed bottlenecks and training-data balance. Primary facets: \textbf{Human}, \textbf{Task}, \textbf{System}.
-
-Overall, the methods worked as intended and were mutually informative. The main surprise across methods was how much interpretation changes once temporal credibility and representativity limits are made explicit.
-
-\item \textbf{Your proposed DQ dimension. Define the dimension, include code, explain motivation with concrete examples, RQ impact, and facet mapping.}
-
-\par\textbf{Answer}\par
-I proposed the custom DQ dimension \textbf{operational authenticity}: whether logged traces represent real clinical operations rather than test/training/administrative artifacts.
-
-\textbf{What motivated this dimension?}
-During manual exploration, one case (\texttt{TEST-001}) stood out with multiple contamination signals: non-standard case ID format, explicit training/test marker in notes (\texttt{TRAINING CASE - DO NOT PROCESS}), administrative actor involvement, and only a one-event trace. These patterns are not fully captured by the pre-implemented methods but can significantly bias downstream interpretation.
-
-\textbf{Custom assessment method code}
+\textbf{Q4.c Custom DQ assessment code}
 \begin{lstlisting}[style=pycode,caption={Custom assessment method for operational authenticity},label={lst:d6_custom_method_inline}]
 def my_custom_dq_method(df: pd.DataFrame) -> Dict[str, any]:
     """
@@ -132,39 +165,60 @@ def my_custom_dq_method(df: pd.DataFrame) -> Dict[str, any]:
     }
 \end{lstlisting}
 
-The result summary (Appendix~\ref{app:d5_custom_dimension}, Table~\ref{tab:d5_custom_summary}) shows 1 flagged high-risk case out of 17 (5.88\%). Even though this is a small proportion, it affects all RQs:
+\textbf{Q4.d RQ impact and mechanism}\par
+Summary results (Appendix~\ref{app:d5_custom_dimension}, Table~\ref{tab:d5_custom_summary}) show 1 high-risk flagged case out of 17 (5.88\%). Even this small share affects all RQs:
 \begin{itemize}
-  \item \textbf{RQ1:} test traces can distort apparent workflow timing and throughput.
-  \item \textbf{RQ2:} non-clinical traces can alter conformance denominators and produce misleading pass/fail rates.
-  \item \textbf{RQ3:} contaminated training data can degrade model validity and external usefulness.
+  \item \textbf{RQ1:} can distort apparent workflow timing and throughput metrics.
+  \item \textbf{RQ2:} can alter conformance denominators and bias pass/fail interpretation.
+  \item \textbf{RQ3:} can contaminate model-development data and reduce validity.
 \end{itemize}
 
-Facet mapping for this custom dimension is included in Appendix~\ref{app:d5_custom_dimension}, Table~\ref{tab:d5_custom_facet_mapping}.
+\textbf{Q4.e Facet-mapping table reference}\par
+Facet mapping is included in Appendix~\ref{app:d5_custom_dimension}, Table~\ref{tab:d5_custom_facet_mapping}.
 
-\item \textbf{Per-Facet Data Quality Synthesis. For each facet, assess findings, main issues, and consequences for RQs. Then discuss the most challenging facet and alternative assessments.}
+\item \textbf{Per-facet data quality synthesis}
+\textbf{Q5.note Custom-method code reference}\par
+The custom assessment code used in this synthesis is included above in Q4.c (Listing~\ref{lst:d6_custom_method_inline}) and also documented in Appendix~\ref{app:d5_custom_code}, Listing~\ref{lst:d5_custom_method}.
 
-\par\textbf{Answer}\par
-This synthesis uses the selected-method outputs in Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d5_key_results}, plus the custom-dimension outputs (Appendix~\ref{app:d5_custom_dimension}).
+\textbf{Q5.a Data facet findings, issues, and RQ consequences}
+\begin{itemize}
+  \item \textbf{Revealed by methods:} M2 missingness profile and M10 timestamp sensitivity.
+  \item \textbf{Main issues:} high field sparsity and unstable timing-based estimates under credibility checks.
+  \item \textbf{Consequences for RQs:} weaker confidence in RQ1 performance estimates and RQ3 feature reliability.
+\end{itemize}
 
-\textbf{Data facet.}
-Main issues were high attribute missingness (M2) and strong sensitivity to timestamp quality (M10). Consequence: RQ1 performance metrics and RQ3 feature quality are less robust than raw metrics suggest.
+\textbf{Q5.b Source facet findings, issues, and RQ consequences}
+\begin{itemize}
+  \item \textbf{Revealed by methods:} custom dimension plus M2 context sparsity.
+  \item \textbf{Main issues:} provenance contamination risk (e.g., \texttt{TEST-001}) and inconsistent source-level completeness.
+  \item \textbf{Consequences for RQs:} reduced transferability and training-data trust, especially for RQ3.
+\end{itemize}
 
-\textbf{Source facet.}
-The custom-dimension findings indicate provenance contamination risk (for example \texttt{TEST-001}), and M2 suggests that some source-dependent fields are inconsistently populated. Consequence: reduced confidence in transferability and training-data validity, especially for RQ3.
+\textbf{Q5.c System facet findings, issues, and RQ consequences}
+\begin{itemize}
+  \item \textbf{Revealed by methods:} M8 communication conformance and M10 batch-logging warnings.
+  \item \textbf{Main issues:} logging design and entry behavior strongly influence apparent process reality.
+  \item \textbf{Consequences for RQs:} RQ1 and RQ2 can be biased if logged time is treated as exact work time.
+\end{itemize}
 
-\textbf{System facet.}
-M8 and M10 show that system logging behavior shapes interpretation: one critical communication failure and substantial batch-logging signals. Consequence: RQ1 and RQ2 conclusions can be biased if system-generated timestamps are treated as perfect proxies for real-time work.
+\textbf{Q5.d Task facet findings, issues, and RQ consequences}
+\begin{itemize}
+  \item \textbf{Revealed by methods:} M6 urgency/shift skew and M8 threshold-based conformance.
+  \item \textbf{Main issues:} task-pattern imbalance and policy-threshold dependence.
+  \item \textbf{Consequences for RQs:} efficiency/safety conclusions may partly reflect case mix and rule settings.
+\end{itemize}
 
-\textbf{Task facet.}
-M6 showed urgency/shift skew, and M8 depends on policy assumptions (for example 15-minute threshold). Consequence: RQ conclusions are condition-dependent; what looks compliant or efficient may partly reflect case-mix and threshold choices.
+\textbf{Q5.e Human facet findings, issues, and RQ consequences}
+\begin{itemize}
+  \item \textbf{Revealed by methods:} M11 workload concentration; M10/custom hints about documentation behavior.
+  \item \textbf{Main issues:} concentration and human logging practice shape what becomes visible.
+  \item \textbf{Consequences for RQs:} RQ1 bottleneck interpretation and RQ3 assumptions can be role-biased.
+\end{itemize}
 
-\textbf{Human facet.}
-M11 showed strong role concentration, and custom/M10 patterns suggest documentation behavior affects trace realism. Consequence: both workflow diagnosis (RQ1) and AI-development assumptions (RQ3) can be biased by who documents and when.
+\textbf{Q5.f Most challenging facet and reason}\par
+The \textbf{Human} facet was most difficult. Event logs capture actions but rarely intent, negotiation, and informal coordination. The \textbf{Source} facet was also difficult because provenance questions often require context outside the event table.
 
-\textbf{Which facet was most challenging?}
-The \textbf{Human} facet was hardest to assess using available methods. Logs show recorded actions but rarely capture intent, negotiation, informal checks, or silent coordination. In practice, the \textbf{Source} facet was also difficult for similar reasons (provenance often requires context beyond event rows).
-
-\textbf{How else could facets be assessed?}
+\textbf{Q5.g Alternative assessment options}
 \begin{itemize}
   \item Add explicit provenance metadata (production/test flag, entry mode, user context).
   \item Triangulate with linked systems (RIS/PACS/message logs) for cross-source validation.
@@ -172,28 +226,32 @@ The \textbf{Human} facet was hardest to assess using available methods. Logs sho
   \item Run periodic audits on documentation practice and timing behavior.
 \end{itemize}
 
-\item \textbf{Invisible work and system design implications. Use the Part 7 analysis and workflow diagram to address missing activities, reasons, system-design consequences, Part I parallel, and one concrete logging-system change with trade-offs.}
+\item \textbf{Invisible work and system design implications}
+\textbf{Q6.a Invisible-work table reference}\par
+The completed table is included in Appendix~\ref{app:d5_invisible_work}, Table~\ref{tab:d5_invisible_work}, grounded in workflow Figure~\ref{fig:assignment2_fig1} (Appendix~\ref{app:assignment_workflow_figure}). Included activities: radiologist-to-radiologist consultation, clarification call to ordering clinician, informal reprioritisation/handoff, and cross-team coordination on patient readiness.
 
-\par\textbf{Answer}\par
-The invisible-work comparison table is provided in Appendix~\ref{app:d5_invisible_work}, Table~\ref{tab:d5_invisible_work}, based on the workflow diagram (Appendix~\ref{app:assignment_workflow_figure}, Figure~\ref{fig:assignment2_fig1}). Key examples include radiologist-to-radiologist consultation, clarification calls to ordering clinicians, informal reprioritisation/handoffs, and cross-team patient-readiness coordination.
-
-These activities are likely absent from the event log for combined \textbf{technical}, \textbf{social}, and \textbf{economic} reasons:
+\textbf{Q6.b Why activities may be unlogged (technical/social/economic)}\par
+Across the listed activities, missingness is plausibly explained by:
 \begin{itemize}
-  \item Technical: much coordination happens by phone, hallway discussion, or across systems without a shared event schema.
-  \item Social: informal coordination is situational and often intentionally lightweight.
-  \item Economic/workload: full documentation of all micro-interactions adds time burden and may conflict with clinical throughput.
+  \item \textbf{Technical:} phone/verbal and cross-system interactions often lack a shared event schema.
+  \item \textbf{Social:} informal coordination is situational and intentionally lightweight.
+  \item \textbf{Economic/workload:} complete micro-documentation increases workload and may reduce throughput.
 \end{itemize}
 
-If a process model is built only from logged events, important distortions follow:
+\textbf{Q6.c Log-only model limitations and RQ consequences}\par
+If modeling relies only on logged events, the model misses real coordination pathways:
 \begin{itemize}
-  \item \textbf{RQ1:} delays can be misattributed to ``visible'' stages while hidden coordination delays remain invisible.
-  \item \textbf{RQ2:} safety-critical communication may appear more compliant than practice if verbal escalation pathways are not represented.
-  \item \textbf{RQ3:} AI models trained on log-only traces may learn an oversimplified process that omits real coordination dynamics.
+  \item \textbf{RQ1:} bottlenecks can be misattributed because hidden coordination delays are not represented.
+  \item \textbf{RQ2:} safety communication may appear stronger than practice if verbal escalation is invisible.
+  \item \textbf{RQ3:} AI models may learn an oversimplified process missing key real-world coordination behavior.
 \end{itemize}
 
-This parallels my Part I experience: interview-based models captured an orderly high-level routine, while observation captured practical deviations and coordination work. The event-log vs workflow-diagram gap is the same phenomenon at a different scale: \emph{work-as-recorded} is not identical to \emph{work-as-done}.
+\textbf{Q6.d Part I parallel: interview vs observation}\par
+This mirrors Part I directly: interview captured work-as-imagined, while observation captured work-as-done with deviations and ad hoc coordination. Here, event logs capture work-as-recorded, which is again only a partial view of practice.
 
-The broader implication is that data-driven design is necessary but not sufficient in healthcare. Following Chapter 9's formal/informal system distinction, formal logs capture what is codified, while critical informal coordination can remain outside system boundaries \parenciteshort{guidehealthinformatics2026ch9and27,guidehealthinformatics2026ch27}.
+\textbf{Q6.e Implication for data-driven healthcare IT}\par
+The gap shows that data-driven design is necessary but insufficient on its own. In Chapter 9 terms, formal systems encode codified work, but clinically important informal coordination can remain outside system boundaries \parenciteshort{guidehealthinformatics2026ch9and27,guidehealthinformatics2026ch27}.
 
-One concrete improvement is to add a lightweight \texttt{coordination\_interaction} event type at selected high-impact points (for example escalation, reprioritisation, cross-team handoff), with minimal required fields: timestamp, linked case ID, initiating role, receiving role, and reason code. The trade-off is extra documentation load and potential surveillance concerns. A practical mitigation is selective capture (not universal capture), role-based visibility, and periodic review to ensure data are used for workflow improvement rather than individual blame.
+\textbf{Q6.f Concrete logging change, trade-offs, and mitigation}\par
+One concrete change is a lightweight \texttt{coordination\_interaction} event type at high-impact points (e.g., escalation, reprioritisation, cross-team handoff), with minimal fields: timestamp, linked case ID, initiating role, receiving role, reason code. Trade-offs: more documentation burden and possible surveillance concerns. Mitigation: selective (not universal) capture, role-based visibility, and governance that uses logs for process improvement rather than individual blame.
 \end{enumerate}
