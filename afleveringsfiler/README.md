@@ -1,9 +1,9 @@
-# Afleveringsfiler
+# Submission Files
 
-Denne mappe samler alle filer, der skal afleveres:
+This folder contains all submission files:
 
-1. `Assignment2_report.pdf` (samlet rapport i PDF)
-2. `assignment.ipynb` (Deliverable 5, komplet notebook)
+1. `Assignment2_report.pdf` (combined report PDF)
+2. `assignment.ipynb` (Deliverable 5, complete notebook)
 3. `part1_event_log.csv` (Part I, Deliverable 2 event log)
 
-Kort sagt: aflever indholdet af denne mappe.
+In short: submit the contents of this folder.

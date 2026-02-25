@@ -205,7 +205,7 @@ Human & + & Workload pressure shapes documentation behavior. \\
 \subsection{Custom DQ Assessment Method Code Excerpt}
 \label{app:d6_custom_code}
 
-\begin{Verbatim}[breaklines=true,fontsize=\footnotesize]
+\begin{lstlisting}[style=pycode]
 def my_custom_dq_method(df: pd.DataFrame):
     rows = []
     for case_id, cdf in df.groupby('case_id'):
@@ -221,7 +221,7 @@ def my_custom_dq_method(df: pd.DataFrame):
     return {'case_flags': out,
             'summary_metrics': {'total_cases': len(out), 'flagged_case_rate_pct': round(100*len(flagged)/len(out), 2)},
             'examples': flagged.head(3).to_dict('records')}
-\end{Verbatim}
+\end{lstlisting}
 
 \begin{table}[H]
 \centering
