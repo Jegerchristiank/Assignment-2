@@ -32,7 +32,7 @@ Adaptation and recovery & Which workaround or exception handling occurs under ti
 \section{Supporting Tables and Code for Part II}
 \label{app:part2_supporting}
 
-This appendix contains full Part II evidence tables and the custom method code excerpt referenced from Deliverable 6.
+This appendix contains full Part II evidence tables, visualisations, and the custom method code excerpt referenced from Deliverable 7.
 
 \begin{table}[H]
 \centering
@@ -83,6 +83,41 @@ M11 & Events per role uneven (radiographer 64; resident 7; system actor high con
 \end{tabularx}
 \rowcolors{3}{}{}
 \end{table}
+
+\subsection{Notebook Visualisations (Part II)}
+\label{app:part2_visualisations}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{billeder/part2_viz_missingness_by_column.png}
+\caption{Part II visualisation: missingness profile by column (Method 2 context)}
+\label{fig:d7_viz_missingness}
+\FigureSource{Generated from \texttt{radiology\_event\_log.csv} using the Part II notebook analysis workflow (February 2026).}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{billeder/part2_viz_representativity_urgency_shift.png}
+\caption{Part II visualisation: urgency and shift representativity (Method 6 context)}
+\label{fig:d7_viz_repr}
+\FigureSource{Generated from \texttt{radiology\_event\_log.csv} using the Part II notebook analysis workflow (February 2026).}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{billeder/part2_viz_tat_raw_vs_clean.png}
+\caption{Part II visualisation: TAT sensitivity before and after batch-logging filtering (Method 10 context)}
+\label{fig:d7_viz_tat}
+\FigureSource{Generated from \texttt{radiology\_event\_log.csv} using the Part II notebook analysis workflow (February 2026).}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{billeder/part2_viz_workload_by_role.png}
+\caption{Part II visualisation: workload distribution by role (Method 11 context)}
+\label{fig:d7_viz_workload}
+\FigureSource{Generated from \texttt{radiology\_event\_log.csv} using the Part II notebook analysis workflow (February 2026).}
+\end{figure}
 
 \begin{table}[H]
 \centering
