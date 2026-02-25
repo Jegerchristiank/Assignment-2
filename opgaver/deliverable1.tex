@@ -4,7 +4,7 @@
 \paragraph*{Scope and notation}
 This Part I study uses a single-case self-study design with one participant (the author). The chosen routine is a weekday morning routine.
 
-The interview was conducted on February 18, 2026 as a self-recorded, semi-structured interview with open questions. The audio was transcribed and is documented in Appendix~\ref{app:part1_transcript}. Following \textcite{guidehealthinformatics2026ch27}, this stage is treated as \textit{manual knowledge acquisition}: it captures \textit{knowledge-as-stated} and establishes a first \textit{work-as-imagined} model of the routine \parenciteshort{guidehealthinformatics2026ch27,zajac2026methodsknowing}.
+The interview was conducted on February 18, 2026 as a self-recorded, semi-structured interview with open questions. Following \textcite{guidehealthinformatics2026ch27}, this stage is treated as \textit{manual knowledge acquisition}: it captures \textit{knowledge-as-stated} and establishes a first \textit{work-as-imagined} model of the routine \parenciteshort{guidehealthinformatics2026ch27,zajac2026methodsknowing}.
 
 Identifier convention used in this report:
 \begin{itemize}
@@ -15,7 +15,7 @@ Identifier convention used in this report:
 \end{itemize}
 The model notation \textit{DCR} denotes \textit{Dynamic Condition Response} graph modelling.
 
-The routine boundary is defined as start when the alarm sounds and end when the apartment door closes, based directly on transcript lines L21-L22 in Appendix~\ref{app:part1_transcript}, Table~\ref{tab:app_transcript_part1}. The baseline sequence (wake-up, hygiene, dressing/packing, breakfast, checks, departure) is grounded in lines L02-L12, and variation points (snooze, breakfast substitution, key search, occasional roommate coordination) are grounded in lines L14-L18. This line-level grounding makes the interview model auditable.
+The routine boundary is defined as start when the alarm sounds and end when the apartment door closes, based directly on transcript lines L21-L22 in Table~\ref{tab:app_transcript_part1}. The baseline sequence (wake-up, hygiene, dressing/packing, breakfast, checks, departure) is grounded in lines L02-L12, and variation points (snooze, breakfast substitution, key search, occasional roommate coordination) are grounded in lines L14-L18. This line-level grounding makes the interview model auditable.
 
 Routine boundary:
 \begin{itemize}
@@ -23,7 +23,7 @@ Routine boundary:
   \item End: participant leaves home (door closes).
 \end{itemize}
 
-The full interview-based activity table is documented in Appendix~\ref{app:part1_supporting}, Table~\ref{tab:d1_activity_spec}. Figure~\ref{fig:d1_dcr_graph} shows the corresponding \textit{interview-based DCR} model exported from DCR Graph. The graph was built from activities A01-A09 and used as the baseline representation for comparison against the observed event log in Deliverables 2 and 3.
+Table~\ref{tab:d1_activity_spec} presents the interview-based activity model, and Figure~\ref{fig:d1_dcr_graph} shows the corresponding \textit{interview-based DCR} graph exported from DCR Graph. The graph was built from activities A01-A09 and used as the baseline representation for comparison against the observed event log in Deliverables 2 and 3.
 
 Assumptions used for modelling:
 \begin{itemize}
@@ -33,3 +33,82 @@ Assumptions used for modelling:
 \end{itemize}
 
 These assumptions delimit model scope and support transparent comparison between \textit{knowledge-as-stated} and observed evidence in Deliverables 2 and 3.
+
+\paragraph*{Interview transcript evidence}
+Table~\ref{tab:app_transcript_part1} contains the line-numbered transcript excerpt used as evidence for Deliverables 1-4.
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Line-numbered self-interview transcript (conducted February 18, 2026)}
+\label{tab:app_transcript_part1}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+Line & Transcript \\
+\midrule
+L01 & Interview question: Please describe your normal weekday morning routine from when you wake up until you leave home. \\
+L02 & Participant: My alarm goes off at 06:45, and I usually get up right away after stopping it. \\
+L03 & Participant: I first drink a glass of water, then I go to the bathroom. \\
+L04 & Participant: I normally take a quick shower, around ten to twelve minutes. \\
+L05 & Participant: After that I get dressed and prepare my bag for the day. \\
+L06 & Participant: I usually pack my laptop, charger, student ID card, wallet, and keys. \\
+L07 & Participant: Then I make coffee and toast. \\
+L08 & Participant: I normally sit down, eat breakfast, and check my calendar and transport timing on my phone. \\
+L09 & Participant: After breakfast I brush my teeth and do a final mirror check. \\
+L10 & Participant: I check the weather so I can choose the right jacket. \\
+L11 & Participant: Before leaving, I do a final essentials check: phone, wallet, keys, and card. \\
+L12 & Participant: I aim to leave at around 07:30 to catch transport to campus. \\
+L13 & Interview question: Which steps vary the most from day to day? \\
+L14 & Participant: Sometimes I snooze once if I am tired. \\
+L15 & Participant: Breakfast can change; if I am in a rush, I might just eat fruit instead of toast. \\
+L16 & Participant: Occasionally I spend a minute looking for keys if I did not put them in the same place. \\
+L17 & Interview question: Are other people typically involved in this routine? \\
+L18 & Participant: Mostly no, I do it alone, but once in a while I text my roommate if I need a shared item. \\
+L19 & Interview question: Which tools or systems are central in the routine? \\
+L20 & Participant: My phone alarm, calendar, weather app, the coffee machine, toaster, and my backpack. \\
+L21 & Interview question: How do you define start and end of this routine? \\
+L22 & Participant: It starts when the alarm sounds and ends when I close the apartment door behind me. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph*{Interview-based activity model}
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Interview-based activity model (work-as-imagined / knowledge-as-stated)}
+\label{tab:d1_activity_spec}
+\rowcolors{3}{black!4}{white}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{0.07\textwidth}
+>{\raggedright\arraybackslash}p{0.25\textwidth}
+>{\raggedright\arraybackslash}p{0.11\textwidth}
+>{\raggedright\arraybackslash}p{0.08\textwidth}
+>{\raggedright\arraybackslash}p{0.14\textwidth}
+>{\raggedright\arraybackslash}X
+}
+\toprule
+ID & Activity label & Actor & Order & Expected time & Main tools/resources \\
+\midrule
+A01 & Stop alarm and orient to time & Participant & 1 & 06:45-06:47 & Smartphone alarm \\
+A02 & Drink water & Participant & 2 & 06:47-06:50 & Glass, tap \\
+A03 & Toilet and shower & Participant & 3 & 06:50-07:02 & Bathroom, shower \\
+A04 & Dress and pack bag & Participant & 4 & 07:02-07:12 & Wardrobe, backpack \\
+A05 & Prepare breakfast and coffee & Participant & 5 & 07:12-07:20 & Coffee machine, toaster \\
+A06 & Eat breakfast and review schedule & Participant & 6 & 07:20-07:25 & Phone calendar/transport apps \\
+A07 & Brush teeth and final grooming & Participant & 7 & 07:25-07:28 & Toothbrush, mirror \\
+A08 & Check weather and essentials & Participant & 8 & 07:28-07:30 & Weather app, keys, wallet, ID \\
+A09 & Leave apartment for commute & Participant & 9 & 07:30 & Front door, bag \\
+\bottomrule
+\end{tabularx}
+\rowcolors{3}{}{}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{billeder/dcr_morning_model.png}
+\caption{Interview-based DCR graph for the morning routine (A01-A09)}
+\label{fig:d1_dcr_graph}
+\FigureSource{Own DCR Graph export (February 2026), built from transcript evidence in Table~\ref{tab:app_transcript_part1} (lines L02-L12, L14-L18, L21-L22).}
+\TableNote{Used as baseline \textit{work-as-imagined} model for comparison with observed events in Deliverables 2 and 3.}
+\end{figure}
