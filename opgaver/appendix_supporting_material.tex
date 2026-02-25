@@ -324,6 +324,85 @@ Human & + & Human setup/maintenance actions can introduce non-operational events
 \rowcolors{3}{}{}
 \end{table}
 
+\subsection{Custom DQ Assessment Method Code}
+\label{app:d5_custom_code}
+
+\begin{lstlisting}[style=pycode,caption={Custom DQ assessment method from notebook Part 5 (operational authenticity)},label={lst:d5_custom_method}]
+def my_custom_dq_method(df: pd.DataFrame) -> Dict[str, any]:
+    """
+    Assess operational authenticity (production-relevance validity).
+
+    Goal:
+    Identify case traces that are likely test/training/non-production records
+    or otherwise not representative of real clinical workflow data.
+    """
+    rows = []
+
+    for case_id, case_df in df.groupby('case_id'):
+        reasons = []
+
+        if not re.match(r'^CXR-\d{3}$', str(case_id)):
+            reasons.append('Unexpected case_id format')
+
+        if case_df['notes'].astype(str).str.contains(
+            r'training|test|do not process', case=False, na=False
+        ).any():
+            reasons.append('Training/test markers in notes')
+
+        if case_df['actor'].eq('Admin User').any():
+            reasons.append('Administrative/test actor involvement')
+
+        if len(case_df) < 3:
+            reasons.append('Extremely short trace (low operational realism)')
+
+        score = len(reasons)
+        if score >= 3:
+            risk_level = 'high'
+        elif score >= 1:
+            risk_level = 'medium'
+        else:
+            risk_level = 'low'
+
+        rows.append({
+            'case_id': case_id,
+            'risk_level': risk_level,
+            'risk_score': score,
+            'reasons': '; '.join(reasons) if reasons else 'None',
+            'event_count': len(case_df),
+        })
+
+    case_flags = pd.DataFrame(rows).sort_values(
+        ['risk_score', 'case_id'], ascending=[False, True]
+    )
+    flagged = case_flags[case_flags['risk_level'].isin(['high', 'medium'])].copy()
+
+    summary_metrics = {
+        'total_cases': int(len(case_flags)),
+        'flagged_cases': int(len(flagged)),
+        'flagged_case_rate_pct': round(
+            100 * len(flagged) / len(case_flags), 2
+        ) if len(case_flags) > 0 else 0.0,
+        'high_risk_cases': int((case_flags['risk_level'] == 'high').sum()),
+    }
+
+    return {
+        'case_flags': case_flags,
+        'flagged_cases': flagged,
+        'summary_metrics': summary_metrics,
+    }
+\end{lstlisting}
+
+\subsection{Workflow Diagram from Assignment Brief}
+\label{app:assignment_workflow_figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{Figur1-assignement2.jpg}
+\caption{Assignment Figure 1 from the Assignment 2 PDF: observed radiology workflow with formal and informal coordination paths}
+\label{fig:assignment2_fig1}
+\FigureSource{Provided in Assignment 2 brief as Figure 1 (\texttt{Figur1-assignement2.jpg}).}
+\end{figure}
+
 \subsection{Invisible Work Material (Notebook Part 7)}
 \label{app:d5_invisible_work}
 
