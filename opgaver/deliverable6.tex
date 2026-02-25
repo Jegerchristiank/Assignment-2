@@ -4,7 +4,7 @@
 \paragraph*{Notation and framing}
 In Part II, \textbf{RQ} denotes \textit{research question} (RQ1-RQ3), and \textbf{M} denotes one selected assessment \textit{method} from the toolkit (e.g., M2, M10). The report uses \textit{TAT} as shorthand for \textit{turnaround time}. The framing follows notebook Part 0 (\textit{Understanding the Context}), where each quality finding is interpreted against RQ1-RQ3.
 
-\textbf{Note on assignment artefacts.} The notebook template (\texttt{assignment.ipynb}) contains a wording line that refers to ``Deliverable 7'' for reflection answers, but the official assignment brief (\texttt{Assignment2.md}) defines these answers as \textbf{Deliverable 6}. This report follows the official brief.
+\textbf{Note on assignment artefacts.} There is a numbering inconsistency between the notebook template (\texttt{assignment.ipynb}) and the Assignment 2 PDF brief. The report follows the Assignment 2 PDF brief: reflections are submitted as \textbf{Deliverable 6}.
 
 \begin{enumerate}
 \item \textbf{Initial exploration and relevance to the three research questions.}  
@@ -41,9 +41,20 @@ The custom method code is documented in Appendix~\ref{app:d6_custom_code}. It sc
 The most challenging facet is \textit{Human}. With the available methods, tacit judgement and informal handoff logic are difficult to assess. A stronger design would combine log analytics with targeted qualitative validation (short observations and focused interviews around critical cases).
 
 \item \textbf{Invisible work and system design implications.}  
-The completed invisible-work table is in Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d6_invisible_work}, and includes three activities from the workflow diagram that are not represented explicitly in the log. For each activity, the non-logging reasons combine \textit{technical} constraints (events happen outside core systems), \textit{social} factors (verbal/ad hoc coordination), and \textit{economic} constraints (documentation burden under time pressure). A model based only on log traces therefore overestimates formal linearity and underestimates coordination work.  
+The completed invisible-work table is in Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d6_invisible_work}.
 
-Consequences by RQ are direct: RQ1 may misclassify bottlenecks, RQ2 may underestimate communication-risk pathways, and RQ3 may train on simplified patterns that ignore real coordination load. This directly parallels Part I, where interview and observation produced a structured \textit{say-do gap}. In both parts, \textit{work-as-recorded} is valuable but incomplete.  
+\textbf{a) Why activities may not be logged (technical, social, economic).}  
+For radiologist peer-consultation, clinician clarification, and informal reprioritisation, non-logging mechanisms combine \textit{technical} boundaries (events occur outside RIS/PACS), \textit{social} practice (verbal/ad hoc coordination), and \textit{economic} pressure (time cost of documenting every micro-coordination step).
 
-In Chapter 9 terms, this is a \textit{formalisation continuum} problem: complete formalisation is neither realistic nor always desirable \parencite{guidehealthinformatics2026ch9and27}. This is the same design logic shown in textbook Figure 9.3 from \textit{Guide to Health Informatics} (Appendix~\ref{app:textbook_figures}, Figure~\ref{fig:textbook_9_3}). Textbook Figure 9.1 from the same source frames the governance side as an iterative model-measure-manage cycle, and textbook Figure 9.2 makes explicit that control depends on interacting loops rather than one single data stream (Appendix~\ref{app:textbook_figures}, Figures~\ref{fig:textbook_9_1} and~\ref{fig:textbook_9_2}). This aligns with declarative workflow thinking, where robust support balances \textit{flexibility} and \textit{constraints} instead of enforcing one rigid path \parencite{vanderaalst2009declarative}. A concrete design change is lightweight optional contextual events (consultation, reprioritisation reason, communication intent) with low-friction UI defaults, periodic review, and clear limits on secondary use to mitigate documentation burden and surveillance effects.
+\textbf{b) How event-log-only models fail, and RQ consequences.}  
+A model built only from logged events overstates formal linearity and under-represents coordination work. Consequences are RQ-specific: RQ1 can misclassify bottlenecks (queue negotiation is invisible), RQ2 can underestimate communication-risk pathways (off-system clarification is invisible), and RQ3 can train on structurally incomplete patterns that ignore real workload coordination.
+
+\textbf{c) Parallel to Part I (interview vs observation).}  
+This mirrors Part I directly: interview-based \textit{knowledge-as-stated} and \textit{work-as-imagined} missed situated adaptations that appeared in observed \textit{work-as-done}. In both parts, \textit{work-as-recorded} is useful but incomplete without qualitative contextualisation.
+
+\textbf{d) Implication for ``data-driven'' system building.}  
+The gap shows that data-driven modelling alone is insufficient for high-stakes workflow design: what is easiest to log is not equivalent to what is operationally decisive. Therefore, system design should treat logs as one evidence layer, not as full ground truth.
+
+\textbf{e) One concrete logging change + Chapter 9 trade-offs.}  
+Introduce a lightweight optional ``coordination event'' (coded type: peer consult / clinician clarification / reprioritisation reason) with minimal required fields and one-click entry. In Chapter 9 terms, this balances \textit{formal} and \textit{informal} information systems along a \textit{formalisation continuum} \parencite{guidehealthinformatics2026ch9and27}: complete formalisation is neither realistic nor always desirable. Practical mitigation is low-friction UI defaults, periodic governance review, and strict limits on secondary use to reduce surveillance burden while improving process visibility.
 \end{enumerate}

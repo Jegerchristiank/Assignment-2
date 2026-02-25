@@ -29,6 +29,142 @@ Adaptation and recovery & Which workaround or exception handling occurs under ti
 \TableNote{Field notes were split into descriptive and reflexive notes; only descriptive notes were transcribed into the submitted CSV event log.}
 \end{table}
 
+\subsection{Core Deliverable Artefacts (Part I)}
+\label{app:part1_core_artefacts}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Line-numbered self-interview transcript (conducted February 18, 2026)}
+\label{tab:app_transcript_part1}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+Line & Transcript \\
+\midrule
+L01 & Interview question: Please describe your normal weekday morning routine from when you wake up until you leave home. \\
+L02 & Participant: My alarm goes off at 06:45, and I usually get up right away after stopping it. \\
+L03 & Participant: I first drink a glass of water, then I go to the bathroom. \\
+L04 & Participant: I normally take a quick shower, around ten to twelve minutes. \\
+L05 & Participant: After that I get dressed and prepare my bag for the day. \\
+L06 & Participant: I usually pack my laptop, charger, student ID card, wallet, and keys. \\
+L07 & Participant: Then I make coffee and toast. \\
+L08 & Participant: I normally sit down, eat breakfast, and check my calendar and transport timing on my phone. \\
+L09 & Participant: After breakfast I brush my teeth and do a final mirror check. \\
+L10 & Participant: I check the weather so I can choose the right jacket. \\
+L11 & Participant: Before leaving, I do a final essentials check: phone, wallet, keys, and card. \\
+L12 & Participant: I aim to leave at around 07:30 to catch transport to campus. \\
+L13 & Interview question: Which steps vary the most from day to day? \\
+L14 & Participant: Sometimes I snooze once if I am tired. \\
+L15 & Participant: Breakfast can change; if I am in a rush, I might just eat fruit instead of toast. \\
+L16 & Participant: Occasionally I spend a minute looking for keys if I did not put them in the same place. \\
+L17 & Interview question: Are other people typically involved in this routine? \\
+L18 & Participant: Mostly no, I do it alone, but once in a while I text my roommate if I need a shared item. \\
+L19 & Interview question: Which tools or systems are central in the routine? \\
+L20 & Participant: My phone alarm, calendar, weather app, the coffee machine, toaster, and my backpack. \\
+L21 & Interview question: How do you define start and end of this routine? \\
+L22 & Participant: It starts when the alarm sounds and ends when I close the apartment door behind me. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Interview-based activity model (work-as-imagined / knowledge-as-stated)}
+\label{tab:d1_activity_spec}
+\rowcolors{3}{black!4}{white}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{0.07\textwidth}
+>{\raggedright\arraybackslash}p{0.25\textwidth}
+>{\raggedright\arraybackslash}p{0.11\textwidth}
+>{\raggedright\arraybackslash}p{0.08\textwidth}
+>{\raggedright\arraybackslash}p{0.14\textwidth}
+>{\raggedright\arraybackslash}X
+}
+\toprule
+ID & Activity label & Actor & Order & Expected time & Main tools/resources \\
+\midrule
+A01 & Stop alarm and orient to time & Participant & 1 & 06:45-06:47 & Smartphone alarm \\
+A02 & Drink water & Participant & 2 & 06:47-06:50 & Glass, tap \\
+A03 & Toilet and shower & Participant & 3 & 06:50-07:02 & Bathroom, shower \\
+A04 & Dress and pack bag & Participant & 4 & 07:02-07:12 & Wardrobe, backpack \\
+A05 & Prepare breakfast and coffee & Participant & 5 & 07:12-07:20 & Coffee machine, toaster \\
+A06 & Eat breakfast and review schedule & Participant & 6 & 07:20-07:25 & Phone calendar/transport apps \\
+A07 & Brush teeth and final grooming & Participant & 7 & 07:25-07:28 & Toothbrush, mirror \\
+A08 & Check weather and essentials & Participant & 8 & 07:28-07:30 & Weather app, keys, wallet, ID \\
+A09 & Leave apartment for commute & Participant & 9 & 07:30 & Front door, bag \\
+\bottomrule
+\end{tabularx}
+\rowcolors{3}{}{}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{billeder/dcr_morning_model.png}
+\caption{Interview-based DCR graph for the morning routine (A01-A09)}
+\label{fig:d1_dcr_graph}
+\FigureSource{Own DCR Graph export (February 2026), built from transcript evidence in Table~\ref{tab:app_transcript_part1} (lines L02-L12, L14-L18, L21-L22).}
+\TableNote{Used as baseline \textit{work-as-imagined} model for comparison with observed events in Deliverables 2 and 3.}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Observed event-log excerpt (February 20, 2026)}
+\label{tab:d2_observed_excerpt}
+\rowcolors{3}{black!4}{white}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{0.08\textwidth}
+>{\raggedright\arraybackslash}p{0.16\textwidth}
+>{\raggedright\arraybackslash}p{0.20\textwidth}
+>{\raggedright\arraybackslash}p{0.12\textwidth}
+>{\raggedright\arraybackslash}X
+>{\raggedright\arraybackslash}p{0.07\textwidth}
+}
+\toprule
+Event & Timestamp & Event label & Tool & Context note & Ref. \\
+\midrule
+E01 & 2026-02-20 06:45 & Alarm rings and snooze & Smartphone alarm & One snooze before wake-up. & A01 \\
+E03 & 2026-02-20 06:52 & Reply to roommate message & Messaging app & Extra micro-coordination event. & NA \\
+E05 & 2026-02-20 06:57 & Toilet and shower & Bathroom & Hygiene block started later than interview expectation. & A03 \\
+E07 & 2026-02-20 07:12 & Start coffee and toast & Coffee machine, toaster & Breakfast preparation begins. & A05 \\
+E08 & 2026-02-20 07:16 & Switch breakfast to banana & Kitchen & Breakfast adapted due to no bread. & A05 \\
+E09 & 2026-02-20 07:18 & Pack bag & Backpack & Packing occurs after breakfast prep starts. & A04 \\
+E10 & 2026-02-20 07:21 & Find keys and borrow lock & Keys, messaging app & Workaround to solve missing item. & A08 \\
+E14 & 2026-02-20 07:30 & Leave apartment & Front door & End of observed routine boundary. & A09 \\
+\bottomrule
+\end{tabularx}
+\rowcolors{3}{}{}
+\end{table}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Delta sheet between interview model and observed routine}
+\label{tab:d3_delta_sheet}
+\rowcolors{3}{black!4}{white}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{0.08\textwidth}
+>{\raggedright\arraybackslash}p{0.18\textwidth}
+>{\raggedright\arraybackslash}p{0.15\textwidth}
+>{\raggedright\arraybackslash}p{0.15\textwidth}
+>{\raggedright\arraybackslash}X
+>{\raggedright\arraybackslash}p{0.16\textwidth}
+}
+\toprule
+Delta ID & Category & Interview ref. & Observed ref. & Difference description & Implication \\
+\midrule
+D01 & Missing events & A06 & No direct event & No distinct seated breakfast-and-schedule-review event occurred. & Interview model overstates routine regularity. \\
+D02 & Extra events & None in baseline & E03 (06:52) & Short roommate-message coordination appears in observed routine only. & Reveals practical coordination load. \\
+D03 & Different order & A04 before A05 & E07 then E09 & Bag packing happened after breakfast preparation started. & Ordering constraints are weaker than stated. \\
+D04 & Timing distortions & A03 expected 06:50-07:02 & E05 start 06:57 & Hygiene block shifted later due to wake-up delays. & Time windows in interview are optimistic. \\
+D05 & Workarounds/coordination steps & A08 final check & E10 (07:21) & Missing lock triggered ad hoc borrowing via message. & Recovery actions are underrepresented in interview model. \\
+D06 & Relabeling/ambiguity & A05/A06 & E08, E13 & ``Breakfast'' changed from sit-down meal to banana plus coffee-to-go. & Label definitions need operational clarity. \\
+\bottomrule
+\end{tabularx}
+\rowcolors{3}{}{}
+\end{table}
+
 \section{Supporting Tables and Code for Part II}
 \label{app:part2_supporting}
 
