@@ -2,30 +2,54 @@
 \label{sec:deliverable4}
 
 \paragraph*{\textbf{Task Requirement (Deliverable 4)}}
-\textit{Reflect on six modelling questions: data missed/misrepresented, activity definition differences, event-log constraints, automation potential, variations revealed by observation, and why qualitative discovery matters for process modelling.}
+\textit{Reflect on six modelling questions on missed data, activity definition, event-log limits, automation potential, observed variations, and the role of qualitative discovery.}
 
 \begin{enumerate}
-\item \textbf{Question 1:} \textit{What kinds of data were missed or misrepresented in the interview-based model and why?}  
-\textbf{Answer:} 
-The interview model captured routine intent, but missed situated details that appeared in observation: micro-coordination (E03), recovery behavior (E10), and omission of the planned seated breakfast-and-schedule step. This pattern is expected in \textit{manual knowledge acquisition}: \textit{interviews} primarily capture recalled intent, while \textit{observation} captures situated adaptation \parenciteshort{guidehealthinformatics2026ch27,zajac2026methodsknowing}. In this case, the interview model therefore overestimated routine linearity.
+\item \textbf{Question 1.} \textit{What kinds of data were missed or misrepresented in the interview-based model and why?}
+\par\textbf{Answer}\par
+\textbf{Claim.} The interview-based model captured intent, but underrepresented situated coordination and recovery behaviour.
 
-\item \textbf{Question 2:} \textit{What counts as an activity in each model, and how did this differ?}  
-\textbf{Answer:} 
-In Deliverable 1, the \textit{interview-based DCR} uses intention-level activities (A01-A09). In Deliverable 2, the event log (the empirical basis for the \textit{observed DCR}) uses timestamped observable actions. This granularity mismatch means one DCR activity can map to multiple logged events. The same routine can therefore appear stable at intention level but variable at event level.
+\textbf{Evidence.} Observation added micro-coordination (E03), workaround behaviour (E10), and omission of the planned seated breakfast-and-schedule step.
 
-\item \textbf{Question 3:} \textit{How did the event log constrain what could be modelled?}  
-\textbf{Answer:} 
-The event log supports strong analysis of order, timing, and deviations (\textit{work-as-recorded}), but it captures motives and judgement only indirectly. Without contextual notes, causal interpretation of why a deviation occurred remains weak. This is why descriptive/reflexive note separation was retained in the method and documented in Appendix~\ref{app:part1_supporting}, Table~\ref{tab:d2_observation_guide}.
+\textbf{Implication.} Interview-only modelling overstates routine linearity and should be treated as a starting model, not a full process description.
 
-\item \textbf{Question 4:} \textit{Do you think that the event log could be captured automatically by a system? Why or why not?}  
-\textbf{Answer:} 
-Automatic capture is strong for digital traces (alarm, app checks, timestamps), but weak for tacit coordination, local workarounds, and searches for missing items. In Chapter 27 terms, automated traces should be combined with \textit{qualitative discovery} methods when the task includes social and contextual adaptation \parenciteshort{guidehealthinformatics2026ch27,zajac2026methodsknowing}.
+\item \textbf{Question 2.} \textit{What counts as an activity in each model, and how did this differ?}
+\par\textbf{Answer}\par
+\textbf{Claim.} The two models use different granularity.
 
-\item \textbf{Question 5:} \textit{How did the observation help uncover variations or exceptions that were not mentioned in the interview?}  
-\textbf{Answer:} 
-Observation revealed concrete \textit{exceptions}: changed order (E07 before E09), omitted planned step (A06 not distinct), and workaround behavior (E10). Applied to this case, Chapter 27 implies that process evidence should not only test conformance but also explain recurring exceptions that may be locally rational \parenciteshort{guidehealthinformatics2026ch27}.
+\textbf{Evidence.} Deliverable 1 uses intention-level activities (Axx), while Deliverable 2 logs timestamped observable events (Exx).
 
-\item \textbf{Question 6:} \textit{Why is it relevant to consider qualitative methods of discovery (e.g., observations) when building process models?}  
-\textbf{Answer:} 
-For this routine, model quality improved by triangulating \textit{knowledge-as-stated} (interview + transcript), \textit{knowledge-as-discovered} (observation), and \textit{work-as-recorded} (event log). The resulting model is more realistic than any single method alone, consistent with Chapter 27's iterative \textit{knowledge acquisition} approach \parenciteshort{guidehealthinformatics2026ch27}.
+\textbf{Implication.} One interview activity can map to multiple observed events, so apparent stability at intention level can hide operational variation.
+
+\item \textbf{Question 3.} \textit{How did the event log constrain what could be modelled?}
+\par\textbf{Answer}\par
+\textbf{Claim.} The event log supports sequence and timing analysis well, but limits interpretation of motives and local judgement.
+
+\textbf{Evidence.} The log records \textit{what} happened and \textit{when}, while causal context is only partially recoverable from notes.
+
+\textbf{Implication.} Process modelling from logs alone can identify deviations, but cannot fully explain why deviations occurred.
+
+\item \textbf{Question 4.} \textit{Do you think that the event log could be captured automatically by a system? Why or why not?}
+\par\textbf{Answer}\par
+\textbf{Claim.} Automatic capture is feasible for digital traces but incomplete for social and tacit work.
+
+\textbf{Evidence.} Timestamped app events can be captured reliably, but ad hoc coordination and workaround decisions are often off-system.
+
+\textbf{Implication.} Automated logging should be combined with targeted qualitative follow-up when model validity depends on context.
+
+\item \textbf{Question 5.} \textit{How did the observation help uncover variations or exceptions that were not mentioned in the interview?}
+\par\textbf{Answer}\par
+\textbf{Claim.} Observation exposed exceptions that were absent from the stated routine.
+
+\textbf{Evidence.} The observed trace showed order changes (E07 before E09), a missing distinct A06 step, and workaround handling (E10).
+
+\textbf{Implication.} Conformance checking should be paired with exception analysis, because recurring local deviations can be practically rational.
+
+\item \textbf{Question 6.} \textit{Why is it relevant to consider qualitative methods of discovery (e.g., observations) when building process models?}
+\par\textbf{Answer}\par
+\textbf{Claim.} Qualitative methods improve model validity by grounding formal traces in real practice.
+
+\textbf{Evidence.} The combined use of interview, observation, and event log produced a more coherent account than any single source alone.
+
+\textbf{Implication.} Robust process models require triangulation across stated, observed, and recorded evidence \parenciteshort{guidehealthinformatics2026ch27,zajac2026methodsknowing}.
 \end{enumerate}

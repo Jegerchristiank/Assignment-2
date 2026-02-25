@@ -2,16 +2,19 @@
 \label{sec:deliverable2}
 
 \paragraph*{\textbf{Task Requirement (Deliverable 2)}}
-\textit{Create an event log representing the observed routine as a .csv file with timestamps, event labels, and relevant context/notes.}
+\textit{Create an event log of the observed routine as a CSV file with timestamps, event labels, and relevant context notes.}
 
-The observation was conducted on February 20, 2026 (06:45-07:30), two days after the interview on February 18, 2026. This separation supports comparison between interview elicitation and situated execution.
+The observation was conducted on February 20, 2026 (06:45--07:30), two days after the interview. This delay was intentional to reduce recall carry-over between elicitation and observation.
 
-As described in Chapter 27 and the course methods slides, \textit{observation} complements \textit{interviews} by capturing situated judgement and practical adaptations that are often missing from recollection-based accounts \parenciteshort{guidehealthinformatics2026ch27,zajac2026methodsknowing}. To make data collection explicit and reproducible, a short observation guide was used (Appendix~\ref{app:part1_supporting}, Table~\ref{tab:d2_observation_guide}). Notes were split into \textit{descriptive notes} and \textit{reflexive notes}, and only descriptive notes were transcribed into the event log \parenciteshort{zajac2026methodsknowing}.
+In methodological terms, the observation captures \textit{work-as-done} (what was actually performed in context). The resulting CSV captures \textit{work-as-recorded} (what is represented in structured trace data) \parenciteshort{guidehealthinformatics2026ch27,zajac2026methodsknowing}. To keep data collection transparent, the observation followed a short guide (Appendix~\ref{app:part1_supporting}, Table~\ref{tab:d2_observation_guide}).
 
-The full machine-readable event log is submitted as a separate CSV artifact with timestamps, event labels, and context notes. This file is the \textit{work-as-recorded} layer of the study and the empirical basis for the \textit{observed DCR} comparison in Deliverables 3-4.
+The submitted event log includes the fields \texttt{case\_id}, \texttt{event\_id}, \texttt{timestamp}, \texttt{event\_label}, \texttt{actor}, \texttt{tool}, \texttt{context\_note}, and \texttt{related\_activity\_id}. The full machine-readable file is submitted separately, while Appendix~\ref{app:part1_supporting}, Table~\ref{tab:d2_observed_excerpt} shows the key excerpt used in the report.
 
-The submitted CSV uses the following fields: \texttt{case\_id}, \texttt{event\_id}, \texttt{timestamp}, \texttt{event\_label}, \texttt{actor}, \texttt{tool}, \texttt{context\_note}, and \texttt{related\_activity\_id}.
+Compared with the interview baseline, the observation reveals three anchor differences that are used in Deliverable 3:
+\begin{itemize}
+  \item E03: extra coordination event,
+  \item E09: order shift relative to the interview sequence,
+  \item E10: explicit workaround behaviour.
+\end{itemize}
 
-Table~\ref{tab:d2_observed_excerpt} in Appendix~\ref{app:part1_supporting} provides the observed event-log excerpt with activity references. Relative to the transcript-based baseline (Table~\ref{tab:app_transcript_part1}, lines L02-L12 and L14-L18), the key comparison anchors are E03 (extra coordination), E09 (order shift), and E10 (workaround).
-
-The observation confirms the same overall routine boundary as Deliverable 1, but adds practical variation and coordination not present in the interview baseline. In particular, one extra coordination event (E03), one order change (E09 relative to A04/A05), and one explicit workaround (E10) are central for the delta sheet in Deliverable 3. These events represent \textit{work-as-done} under actual constraints.
+These observations provide the empirical basis for the delta analysis between stated and observed practice.

@@ -2,36 +2,29 @@
 \label{sec:deliverable1}
 
 \paragraph*{\textbf{Task Requirement (Deliverable 1)}}
-\textit{Based on the interview, describe the routine and identify activities, their order, and participants involved.}
+\textit{Describe the routine from the interview and identify activities, their order, and participants.}
 
-\paragraph*{Scope and notation}
-This Part I study uses a single-case self-study design with one participant (the author). The chosen routine is a weekday morning routine.
+\paragraph*{Scope and evidence}
+This Part I study is a single-case self-study with one participant (the author) and one routine (weekday morning preparation before leaving home). The interview was conducted on February 18, 2026 as a semi-structured self-interview.
 
-The interview was conducted on February 18, 2026 as a self-recorded, semi-structured interview with open questions. Following \textcite{guidehealthinformatics2026ch27}, this stage is treated as \textit{manual knowledge acquisition}: it captures \textit{knowledge-as-stated} and establishes a first \textit{work-as-imagined} model of the routine \parenciteshort{guidehealthinformatics2026ch27,zajac2026methodsknowing}. This placement is consistent with textbook Figure 27.1 from \textit{Guide to Health Informatics}, where model acquisition precedes formal computer reasoning (Appendix~\ref{app:textbook_figures}, Figure~\ref{fig:textbook_27_1}).
+Following Chapter 27, this step is treated as \textit{manual knowledge acquisition}: it captures \textit{knowledge-as-stated} (what the participant reports) and produces an initial \textit{work-as-imagined} model (how the routine is expected to unfold) \parenciteshort{guidehealthinformatics2026ch27,zajac2026methodsknowing}. Internal identifiers used in the report are summarised in Table~\ref{tab:abbreviation_key}.
 
-Identifier conventions and core terminology are centralised in the glossary tables (Tables~\ref{tab:begreber_notation}--\ref{tab:begreber_part2}).
-
-The routine boundary is defined as start when the alarm sounds and end when the apartment door closes, based directly on transcript lines L21-L22 in Table~\ref{tab:app_transcript_part1}. The baseline sequence (wake-up, hygiene, dressing/packing, breakfast, checks, departure) is grounded in lines L02-L12, and variation points (snooze, breakfast substitution, key search, occasional roommate coordination) are grounded in lines L14-L18. This line-level grounding makes the interview model auditable.
-
-Routine boundary:
+The routine boundary is anchored in transcript evidence (Appendix~\ref{app:part1_supporting}, Table~\ref{tab:app_transcript_part1}, lines L21--L22):
 \begin{itemize}
-  \item Start: alarm sounds.
-  \item End: participant leaves home (door closes).
+  \item Start: the alarm sounds.
+  \item End: the apartment door closes when leaving.
 \end{itemize}
 
-Table~\ref{tab:d1_activity_spec} presents the interview-based activity model, and Figure~\ref{fig:d1_dcr_graph} shows the corresponding \textit{interview-based DCR} graph exported from DCR Graph. The graph was built from activities A01-A09 and used as the baseline representation for comparison against the observed event log in Deliverables 2 and 3.
+The baseline sequence is grounded in lines L02--L12: wake-up, hygiene, dressing/packing, breakfast, final checks, and departure. Variation points (snooze, breakfast substitution, key search, occasional roommate coordination) are grounded in lines L14--L18.
 
-Assumptions used for modelling:
+\paragraph*{Participants, order, and modelling assumptions}
+Table~\ref{tab:d1_activity_spec} presents the interview-based activity model, and Figure~\ref{fig:d1_dcr_graph} shows the corresponding interview-based DCR graph. In this context, interview-based DCR means a process model built from interview evidence rather than direct observation.
+
+Assumptions used in Deliverable 1 are:
 \begin{itemize}
-  \item The model represents a weekday baseline (not weekend behavior).
+  \item The model represents a weekday baseline, not weekend behaviour.
   \item The participant is the only consistent human actor in the routine.
-  \item Expected times are recall-based interview estimates and are treated as approximate.
+  \item Expected times are recall-based estimates and therefore approximate.
 \end{itemize}
 
-These assumptions delimit model scope and support transparent comparison between \textit{knowledge-as-stated} and observed evidence in Deliverables 2 and 3.
-
-\paragraph*{Interview transcript evidence}
-The full line-numbered transcript excerpt used as evidence for Deliverables 1-4 is provided in Appendix~\ref{app:part1_supporting}, Table~\ref{tab:app_transcript_part1}.
-
-\paragraph*{Interview-based activity model}
-The full interview-based activity table and DCR figure are provided in Appendix~\ref{app:part1_supporting}, Table~\ref{tab:d1_activity_spec} and Figure~\ref{fig:d1_dcr_graph}. These appendixed artefacts are the baseline \textit{work-as-imagined} model used for Deliverables 2 and 3.
+Together, these assumptions keep scope explicit and make later comparison with observed evidence in Deliverables 2 and 3 auditable.
