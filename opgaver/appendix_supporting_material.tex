@@ -168,28 +168,52 @@ D06 & Relabeling/ambiguity & A05/A06 & E08, E13 & ``Breakfast'' changed from sit
 \section{Supporting Tables and Code for Part II}
 \label{app:part2_supporting}
 
-This appendix contains full Part II evidence tables, visualisations, and the custom method code excerpt referenced from Deliverable 6 and Deliverable 7.
+This section includes only the relevant outputs from the completed Deliverable 5 notebook (\texttt{assignment.ipynb}): selected method evidence, key visualisations, custom DQ-dimension results, and invisible-work comparison material.
 
 \begin{table}[H]
 \centering
 \footnotesize
-\caption{Selected methods from Part 3}
-\label{tab:d6_method_selection}
+\caption{Part II log profile from notebook Part 1 exploration}
+\label{tab:d5_log_profile}
 \rowcolors{3}{black!4}{white}
 \begin{tabularx}{\textwidth}{
->{\raggedright\arraybackslash}p{0.11\textwidth}
+>{\raggedright\arraybackslash}p{0.36\textwidth}
+>{\raggedright\arraybackslash}X
+}
+\toprule
+Metric & Result \\
+\midrule
+Total events & 150 \\
+Unique cases & 17 \\
+Time range covered & 2026-01-12 07:45 to 2026-01-13 08:46 \\
+Unique logged activities & 12 \\
+Columns with strongest missingness & \texttt{study\_uid} (134), \texttt{series\_count} (134), \texttt{instance\_count} (134), \texttt{icd11\_code} (131), \texttt{report\_id} (113), \texttt{modality} (101), \texttt{notes} (73) \\
+\bottomrule
+\end{tabularx}
+\rowcolors{3}{}{}
+\end{table}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Selected methods run in notebook Part 4}
+\label{tab:d5_method_selection}
+\rowcolors{3}{black!4}{white}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{0.10\textwidth}
 >{\raggedright\arraybackslash}p{0.18\textwidth}
+>{\raggedright\arraybackslash}p{0.17\textwidth}
 >{\raggedright\arraybackslash}p{0.12\textwidth}
 >{\raggedright\arraybackslash}X
 }
 \toprule
-Method & Primary facets & RQ link & Why selected \\
+Method & DQ dimension & Primary facets & RQ link & Selection rationale \\
 \midrule
-M2 & Data, Source, System & RQ1-3 & Baseline completeness check before further interpretation. \\
-M6 & Data, Task, Human & RQ1, RQ3 & Captures urgency and temporal representativity in one method. \\
-M8 (15 min) & Task, System, Human & RQ2 & Directly tests safety-critical communication conformance. \\
-M10 & Data, System, Task & RQ1 & Combines TAT metrics with batch-logging sensitivity. \\
-M11 & Human, Task, System & RQ1, RQ3 & Adds workload and actor-distribution context. \\
+M2 & Completeness & Data, Source, System & RQ1--RQ3 & Baseline quality gate before downstream interpretation. \\
+M6 & Representativity & Data, Task, Human & RQ1, RQ3 & Checks urgency and temporal balance of case coverage. \\
+M8 & Timeliness conformance & Task, System, Human & RQ2 & Tests safety-critical communication behavior directly. \\
+M10 & Timeliness + credibility & Data, System, Task & RQ1 & Quantifies TAT and sensitivity to batch logging. \\
+M11 & Workload representativity & Human, Task, System & RQ1, RQ3 & Reveals concentration across actors/roles. \\
 \bottomrule
 \end{tabularx}
 \rowcolors{3}{}{}
@@ -198,131 +222,155 @@ M11 & Human, Task, System & RQ1, RQ3 & Adds workload and actor-distribution cont
 \begin{table}[H]
 \centering
 \footnotesize
-\caption{Key results and interpretation}
-\label{tab:d6_method_results}
+\caption{Key quantitative outputs from selected methods}
+\label{tab:d5_key_results}
 \rowcolors{3}{black!4}{white}
 \begin{tabularx}{\textwidth}{
 >{\raggedright\arraybackslash}p{0.10\textwidth}
->{\raggedright\arraybackslash}p{0.30\textwidth}
+>{\raggedright\arraybackslash}p{0.31\textwidth}
 >{\raggedright\arraybackslash}X
->{\raggedright\arraybackslash}p{0.15\textwidth}
 }
 \toprule
-Method & Key result & Interpretation (incl. expectation check) & Main facet(s) \\
+Method & Key output & Relevance for Deliverable 6 reflection \\
 \midrule
-M2 & High missingness in context attributes (e.g., \texttt{study\_uid} 134/150). & As expected; process-flow analysis is possible, but context-dependent inference is limited. & Data, Source \\
-M6 & Urgency skew: 15 stat/urgent vs 2 routine; shift imbalance (Day 11, Night 6, Evening 0). & As expected; representativity is uneven, so generalisation should be cautious. & Data, Task, Human \\
-M8 & 16 pass, 1 fail (critical case missing communication event). & Worked as intended; even one failed critical case is operationally important for RQ2. & Task, System, Human \\
-M10 & Batch logging suspected in 6/17; mean total TAT 147.93 min raw vs 198.50 min clean. & Most surprising output; RQ1 conclusions are highly sensitive to timestamp credibility. & Data, System, Task \\
-M11 & Events per role uneven (radiographer 64; resident 7; system actor high concentration). & As expected; workload concentration affects operational and modelling interpretation. & Human, Task, System \\
+M2 & Context-field missingness is high (e.g., \texttt{study\_uid} 134/150; \texttt{modality} 101/150). & Shows what can and cannot be trusted for workflow and AI-oriented interpretations. \\
+M6 & Urgency skew (15 stat/urgent, 2 routine) and shift imbalance (Day 11, Night 6, Evening 0). & Demonstrates representativity limits for RQ1 and especially RQ3 generalisation. \\
+M8 & Critical communication: 16 pass, 1 fail (\texttt{CXR-004} missing communication event). & Direct patient-safety signal tied to RQ2 and conformance assumptions. \\
+M10 & Mean total TAT = 147.93 min raw vs 198.50 min clean; 6/17 cases flagged as batch-logged (35.29\%). & Shows strong sensitivity of performance conclusions (RQ1) to timestamp credibility. \\
+M11 & Events per role: radiographer 64, system 31, senior 31, clinician 17, resident 7. & Quantifies workload concentration and role imbalance relevant to RQ1 and RQ3. \\
 \bottomrule
 \end{tabularx}
 \rowcolors{3}{}{}
 \end{table}
 
-\subsection{Notebook Visualisations (Part II)}
+\subsection{Notebook Visualisations (Relevant Outputs)}
 \label{app:part2_visualisations}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\textwidth]{billeder/part2_viz_missingness_by_column.png}
-\caption{Part II visualisation: missingness profile by column (Method 2 context)}
-\label{fig:d6_viz_missingness}
-\FigureSource{Generated from \texttt{radiology\_event\_log.csv} using the Part II notebook analysis workflow (February 2026).}
+\caption{Method 2 output: missingness profile by column}
+\label{fig:d5_viz_missingness}
+\FigureSource{Generated from Deliverable 5 notebook output using \texttt{radiology\_event\_log.csv}.}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\textwidth]{billeder/part2_viz_representativity_urgency_shift.png}
-\caption{Part II visualisation: urgency and shift representativity (Method 6 context)}
-\label{fig:d6_viz_repr}
-\FigureSource{Generated from \texttt{radiology\_event\_log.csv} using the Part II notebook analysis workflow (February 2026).}
+\caption{Method 6 output: urgency and shift representativity}
+\label{fig:d5_viz_representativity}
+\FigureSource{Generated from Deliverable 5 notebook output using \texttt{radiology\_event\_log.csv}.}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\textwidth]{billeder/part2_viz_tat_raw_vs_clean.png}
-\caption{Part II visualisation: TAT sensitivity before and after batch-logging filtering (Method 10 context)}
-\label{fig:d6_viz_tat}
-\FigureSource{Generated from \texttt{radiology\_event\_log.csv} using the Part II notebook analysis workflow (February 2026).}
+\caption{Method 10 output: turnaround-time sensitivity (raw vs batch-filtered)}
+\label{fig:d5_viz_tat}
+\FigureSource{Generated from Deliverable 5 notebook output using \texttt{radiology\_event\_log.csv}.}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\textwidth]{billeder/part2_viz_workload_by_role.png}
-\caption{Part II visualisation: workload distribution by role (Method 11 context)}
-\label{fig:d6_viz_workload}
-\FigureSource{Generated from \texttt{radiology\_event\_log.csv} using the Part II notebook analysis workflow (February 2026).}
+\caption{Method 11 output: workload distribution by role}
+\label{fig:d5_viz_workload}
+\FigureSource{Generated from Deliverable 5 notebook output using \texttt{radiology\_event\_log.csv}.}
 \end{figure}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.95\textwidth]{Figur1-assignement2.jpg}
-\caption{Assignment Figure 1: Observed radiology workflow}
-\label{fig:assignment2_workflow}
-\FigureSource{Provided in Assignment 2 as \texttt{Figur1-assignement2.jpg}.}
-\end{figure}
+\subsection{Custom DQ Dimension (Notebook Part 5)}
+\label{app:d5_custom_dimension}
 
 \begin{table}[H]
 \centering
-\small
-\caption{Facet mapping for Batch Logging Credibility}
-\label{tab:d6_custom_facet_mapping}
+\footnotesize
+\caption{Custom DQ dimension result summary: operational authenticity}
+\label{tab:d5_custom_summary}
 \rowcolors{3}{black!4}{white}
-\begin{tabularx}{\textwidth}{l c X}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{0.35\textwidth}
+>{\raggedright\arraybackslash}X
+}
 \toprule
-Facet & Involvement & Justification \\
+Metric & Result \\
 \midrule
-Data & ++ & Timestamp integrity is the direct object of assessment. \\
-Source & ++ & Logging practice determines whether entries are real-time or delayed. \\
-System & + & Interface/workflow design can incentivise retrospective entry. \\
-Task & + & Timeliness-sensitive tasks are directly affected by timestamp quality. \\
-Human & + & Workload pressure shapes documentation behavior. \\
+Total evaluated cases & 17 \\
+Flagged cases (medium/high risk) & 1 \\
+Flagged case rate & 5.88\% \\
+High-risk cases & 1 \\
+Flagged case details & \texttt{TEST-001}: unexpected case ID format; training/test marker in notes; administrative actor involvement; extremely short trace (1 event) \\
 \bottomrule
 \end{tabularx}
 \rowcolors{3}{}{}
 \end{table}
 
-\subsection{Custom DQ Assessment Method Code Excerpt}
-\label{app:d6_custom_code}
+\begin{table}[H]
+\centering
+\small
+\caption{Facet mapping for custom dimension: operational authenticity}
+\label{tab:d5_custom_facet_mapping}
+\rowcolors{3}{black!4}{white}
+\begin{tabularx}{\textwidth}{l c X}
+\toprule
+Facet & Involvement & Justification \\
+\midrule
+Data & ++ & Case identifiers and note text contain direct contamination signals (test/training traces). \\
+Source & ++ & Source governance determines whether non-production traces enter the analysis dataset. \\
+System & + & Logging architecture does not fully separate test and production provenance. \\
+Task & + & KPI and triage conclusions become biased when non-clinical traces are included. \\
+Human & + & Human setup/maintenance actions can introduce non-operational events. \\
+\bottomrule
+\end{tabularx}
+\rowcolors{3}{}{}
+\end{table}
 
-\begin{lstlisting}[style=pycode]
-def my_custom_dq_method(df: pd.DataFrame):
-    rows = []
-    for case_id, cdf in df.groupby('case_id'):
-        n = len(cdf)
-        u = cdf['event_time'].nunique()
-        dup = n - u
-        dur = ((cdf['event_time'].max()-cdf['event_time'].min()).total_seconds()/60) if n > 1 else 0
-        score = (2 if dup >= 3 else 1 if dup > 0 else 0) + (2 if n >= 5 and dur < 2 else 0) + (1 if (u/n) < 0.5 else 0)
-        risk = 'high' if score >= 4 else ('medium' if score >= 2 else 'low')
-        rows.append({'case_id': case_id, 'risk_level': risk, 'risk_score': score})
-    out = pd.DataFrame(rows)
-    flagged = out[out['risk_level'].isin(['high', 'medium'])]
-    return {'case_flags': out,
-            'summary_metrics': {'total_cases': len(out), 'flagged_case_rate_pct': round(100*len(flagged)/len(out), 2)},
-            'examples': flagged.head(3).to_dict('records')}
-\end{lstlisting}
+\subsection{Invisible Work Material (Notebook Part 7)}
+\label{app:d5_invisible_work}
 
 \begin{table}[H]
 \centering
 \footnotesize
-\caption{Invisible work not represented explicitly in the event log}
-\label{tab:d6_invisible_work}
+\caption{Activities logged in the event log (12 unique activities)}
+\label{tab:d5_logged_activities}
 \rowcolors{3}{black!4}{white}
 \begin{tabularx}{\textwidth}{
->{\raggedright\arraybackslash}p{0.23\textwidth}
->{\raggedright\arraybackslash}p{0.18\textwidth}
->{\raggedright\arraybackslash}p{0.13\textwidth}
+>{\raggedright\arraybackslash}p{0.49\textwidth}
 >{\raggedright\arraybackslash}X
->{\raggedright\arraybackslash}p{0.16\textwidth}
+}
+\toprule
+Logged activity set A & Logged activity set B \\
+\midrule
+Case selected & Order placed \\
+Critical communication & Patient selected from worklist \\
+Image acquisition start & Preliminary report created \\
+Image acquisition end & Report distributed \\
+Images uploaded to PACS & Report finalised \\
+Order accepted & Report validated and approved \\
+\bottomrule
+\end{tabularx}
+\rowcolors{3}{}{}
+\end{table}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Invisible-work activities from workflow diagram not represented explicitly in log}
+\label{tab:d5_invisible_work}
+\rowcolors{3}{black!4}{white}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{0.22\textwidth}
+>{\raggedright\arraybackslash}p{0.21\textwidth}
+>{\raggedright\arraybackslash}p{0.14\textwidth}
+>{\raggedright\arraybackslash}X
+>{\raggedright\arraybackslash}p{0.17\textwidth}
 }
 \toprule
 Activity from diagram & Why not logged? & Facet & Consequence & Capture option \\
 \midrule
-Radiologist-to-radiologist consultation & Verbal/ad hoc interaction & Human, Task & Understates collaborative interpretation work & Optional peer-consult event \\
-Clarification with ordering clinician & Often outside core system & System, Source & Communication-delay attribution may be misleading & Linked communication event \\
-Informal reprioritisation/handoff & Local coordination, not formal workflow step & Task, Human & Bottleneck and fairness analyses miss queue management & Priority-adjusted event with reason code \\
+Radiologist-to-radiologist consultation & Mostly verbal/ad hoc interaction outside structured capture & Human, Task & Collaborative interpretation work is underrepresented & Optional lightweight consult event \\
+Clarification call to ordering clinician & Usually done by phone outside RIS/PACS event schema & System, Source & Communication-delay attribution becomes incomplete & Linked communication event type \\
+Informal reprioritisation and handoff & Queue coordination is locally negotiated rather than formalised & Task, Human & Bottleneck and fairness analyses miss practical prioritisation logic & Priority-change event with rationale \\
+Cross-team coordination on patient readiness & Interdepartmental coordination spans systems and roles & Source, System, Task & Waiting-time drivers become invisible in case timeline analysis & Interdepartment status event \\
 \bottomrule
 \end{tabularx}
 \rowcolors{3}{}{}

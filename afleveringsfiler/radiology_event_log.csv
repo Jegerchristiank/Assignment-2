@@ -1,0 +1,151 @@
+case_id,accession_number,event_time,activity,fhir_resource,actor,role,modality,study_uid,series_count,instance_count,report_id,icd11_code,notes
+TEST-001,TEST001,2026-01-12T07:45,Order placed,ServiceRequest,Admin User,system,,,,,,,indication=TRAINING CASE - DO NOT PROCESS
+CXR-001,ACC20260112001,2026-01-12T08:14,Order placed,ServiceRequest,Dr. Jensen,clinician,,,,,,,indication=Suspected pneumonia
+CXR-001,ACC20260112001,2026-01-12T08:16,Order accepted,Task,RIS System,system,,,,,,,
+CXR-002,ACC20260112002,2026-01-12T08:22,Order placed,ServiceRequest,Dr. Patel,clinician,,,,,,,indication=Central line position check
+CXR-002,ACC20260112002,2026-01-12T08:24,Order accepted,Task,RIS System,system,,,,,,,
+CXR-012,ACC20260112012,2026-01-12T08:30,Order placed,ServiceRequest,Dr. Jensen,clinician,,,,,,,indication=Follow-up imaging
+CXR-012,ACC20260112012,2026-01-12T08:32,Order accepted,Task,RIS System,system,,,,,,,
+CXR-003,ACC20260112003,2026-01-12T08:35,Order placed,ServiceRequest,Dr. Nielsen,clinician,,,,,,cough,indication=Shortness of breath
+CXR-003,ACC20260112003,2026-01-12T08:37,Order accepted,Task,RIS System,system,,,,,,,
+CXR-004,ACC20260112004,2026-01-12T08:42,Order placed,ServiceRequest,Dr. Kumar,clinician,,,,,,,indication=Chest pain
+CXR-004,ACC20260112004,2026-01-12T08:43,Order placed,ServiceRequest,Dr. Kumar,clinician,,,,,,,indication=Chest pain
+CXR-004,ACC20260112004,2026-01-12T08:44,Order accepted,Task,RIS System,system,,,,,,,
+CXR-016,ACC20260112016,2026-01-12T09:00,Order placed,ServiceRequest,Dr. Nielsen,clinician,,,,,,,indication=Acute respiratory distress
+CXR-016,ACC20260112016,2026-01-12T09:02,Order accepted,Task,RIS System,system,,,,,,,priority=stat
+CXR-016,ACC20260112016,2026-01-12T09:03,Patient selected from worklist,Task,Tech. Hansen,radiographer,,,,,,,
+CXR-005,ACC20260112005,2026-01-12T09:05,Order placed,ServiceRequest,Dr. Jensen,clinician,,,,,,,indication=Pneumonia follow-up
+CXR-016,ACC20260112016,2026-01-12T09:05,Image acquisition start,ImagingStudy,Tech. Hansen,radiographer,DX,,,,,,location=ED portable
+CXR-005,ACC20260112005,2026-01-12T09:07,Order accepted,Task,RIS System,system,,,,,,,
+CXR-016,ACC20260112016,2026-01-12T09:07,Image acquisition end,ImagingStudy,Tech. Hansen,radiographer,DX,,,,,,
+CXR-016,ACC20260112016,2026-01-12T09:07,Images uploaded to PACS,ImagingStudy,Tech. Hansen,radiographer,DX,1.2.840.113619.2.26.1.20260112.090700,1,2,,,views=AP supine
+CXR-016,ACC20260112016,2026-01-12T09:08,Case selected,Task,Dr. Christensen,senior,,,,,,,priority=stat
+CXR-016,ACC20260112016,2026-01-12T09:12,Report finalised,DiagnosticReport,Dr. Christensen,senior,,,,,RPT-2026-016,MD30.0,status=final|critical=true
+CXR-001,ACC20260112001,2026-01-12T09:13,Patient selected from worklist,Task,Tech. Hansen,radiographer,,,,,,,
+CXR-016,ACC20260112016,2026-01-12T09:13,Report distributed,DiagnosticReport,RIS System,system,,,,,RPT-2026-016,,
+CXR-001,ACC20260112001,2026-01-12T09:14,Image acquisition start,ImagingStudy,Tech. Hansen,radiographer,CR,,,,,,
+CXR-016,ACC20260112016,2026-01-12T09:15,Critical communication,DiagnosticReport,Dr. Christensen,senior,,,,,RPT-2026-016,,Direct call to ED physician
+CXR-001,ACC20260112001,2026-01-12T09:17,Image acquisition end,ImagingStudy,Tech. Hansen,radiographer,CR,,,,,,
+CXR-002,ACC20260112002,2026-01-12T09:18,Image acquisition start,ImagingStudy,Tech. Larsen,radiographer,DX,,,,,,location=ICU portable
+CXR-001,ACC20260112001,2026-01-12T09:18,Images uploaded to PACS,ImagingStudy,Tech. Hansen,radiographer,CR,1.2.840.113619.2.26.1.20260112.091800,2,4,,,views=PA and Lateral
+CXR-002,ACC20260112002,2026-01-12T09:18,Patient selected from worklist,Task,Tech. Larsen,radiographer,,,,,,,
+CXR-003,ACC20260112003,2026-01-12T09:21,Patient selected from worklist,Task,Tech. Hansen,radiographer,,,,,,,
+CXR-002,ACC20260112002,2026-01-12T09:22,Image acquisition end,ImagingStudy,Tech. Larsen,radiographer,DX,,,,,,
+CXR-003,ACC20260112003,2026-01-12T09:22,Image acquisition start,ImagingStudy,Tech. Hansen,radiographer,CR,,,,,,
+CXR-002,ACC20260112002,2026-01-12T09:23,Images uploaded to PACS,ImagingStudy,Tech. Larsen,radiographer,DX,1.2.840.113619.2.26.1.20260112.092300,1,2,,,views=AP supine
+CXR-012,ACC20260112012,2026-01-12T09:25,Image acquisition start,ImagingStudy,Tech. Olsen,radiographer,CR,,,,,,
+CXR-012,ACC20260112012,2026-01-12T09:25,Patient selected from worklist,Task,Tech. Olsen,radiographer,,,,,,,
+CXR-003,ACC20260112003,2026-01-12T09:26,Image acquisition end,ImagingStudy,Tech. Hansen,radiographer,CR,,,,,,
+CXR-003,ACC20260112003,2026-01-12T09:27,Images uploaded to PACS,ImagingStudy,Tech. Hansen,radiographer,CR,1.2.840.113619.2.26.1.20260112.092700,2,4,,,views=PA and Lateral
+CXR-012,ACC20260112012,2026-01-12T09:30,Images uploaded to PACS,ImagingStudy,Tech. Olsen,radiographer,CR,1.2.840.113619.2.26.1.20260112.093000,2,4,,,views=PA and Lateral
+CXR-012,ACC20260112012,2026-01-12T09:35,Image acquisition end,ImagingStudy,Tech. Olsen,radiographer,CR,,,,,,
+CXR-005,ACC20260112005,2026-01-12T09:40,Patient selected from worklist,Task,Tech. Olsen,radiographer,,,,,,,
+CXR-005,ACC20260112005,2026-01-12T09:42,Image acquisition start,ImagingStudy,Tech. Olsen,radiographer,CR,,,,,,
+CXR-001,ACC20260112001,2026-01-12T09:45,Case selected,Task,Dr. Sørensen,senior,,,,,,,
+CXR-005,ACC20260112005,2026-01-12T09:45,Image acquisition end,ImagingStudy,Tech. Olsen,radiographer,CR,,,,,,
+CXR-005,ACC20260112005,2026-01-12T09:46,Images uploaded to PACS,ImagingStudy,Tech. Olsen,radiographer,CR,1.2.840.113619.2.26.1.20260112.094600,2,4,,,views=PA and Lateral
+CXR-006,ACC20260112006,2026-01-12T09:48,Order placed,ServiceRequest,Dr. Møller,clinician,,,,,,,"indication=Cough, missing ICD code"
+CXR-006,ACC20260112006,2026-01-12T09:50,Order accepted,Task,RIS System,system,,,,,,,
+CXR-004,ACC20260112004,2026-01-12T09:51,Patient selected from worklist,Task,Tech. Hansen,radiographer,,,,,,,
+CXR-004,ACC20260112004,2026-01-12T09:52,Image acquisition start,ImagingStudy,Tech. Hansen,radiographer,CR,,,,,,
+CXR-004,ACC20260112004,2026-01-12T09:55,Image acquisition end,ImagingStudy,Tech. Hansen,radiographer,CR,,,,,,
+CXR-004,ACC20260112004,2026-01-12T09:56,Images uploaded to PACS,ImagingStudy,Tech. Hansen,radiographer,CR,1.2.840.113619.2.26.1.20260112.095600,2,4,,,views=PA and Lateral
+CXR-001,ACC20260112001,2026-01-12T09:58,Report finalised,DiagnosticReport,Dr. Sørensen,senior,,,,,RPT-2026-001,CA40.0,status=final
+CXR-001,ACC20260112001,2026-01-12T09:59,Report distributed,DiagnosticReport,RIS System,system,,,,,RPT-2026-001,,
+CXR-012,ACC20260112012,2026-01-12T10:00,Case selected,Task,Dr. Sørensen,senior,,,,,,,
+CXR-002,ACC20260112002,2026-01-12T10:02,Case selected,Task,Dr. Sørensen,senior,,,,,,,
+CXR-003,ACC20260112003,2026-01-12T10:05,Case selected,Task,Dr. Andersen,resident,,,,,,,
+CXR-007,ACC20260112007,2026-01-12T10:08,Order placed,ServiceRequest,Dr. Patel,clinician,,,,,,,indication=Pleural effusion evaluation
+CXR-007,ACC20260112007,2026-01-12T10:10,Order accepted,Task,RIS System,system,,,,,,,
+CXR-007,ACC20260112007,2026-01-12T10:12,Patient selected from worklist,Task,Tech. Larsen,radiographer,,,,,,,
+CXR-002,ACC20260112002,2026-01-12T10:14,Report finalised,DiagnosticReport,Dr. Sørensen,senior,,,,,RPT-2026-002,QA42,status=final
+CXR-005,ACC20260112005,2026-01-12T10:15,Case selected,Task,Dr. Sørensen,senior,,,,,,,
+CXR-002,ACC20260112002,2026-01-12T10:15,Report distributed,DiagnosticReport,RIS System,system,,,,,RPT-2026-002,,
+CXR-012,ACC20260112012,2026-01-12T10:15,Report finalised,DiagnosticReport,Dr. Sørensen,senior,,,,,RPT-2026-012,MD11.0,status=final
+CXR-012,ACC20260112012,2026-01-12T10:16,Report distributed,DiagnosticReport,RIS System,system,,,,,RPT-2026-012,,
+CXR-003,ACC20260112003,2026-01-12T10:18,Preliminary report created,DiagnosticReport,Dr. Andersen,resident,,,,,RPT-2026-003-PRELIM,MD11.0,status=preliminary
+CXR-006,ACC20260112006,2026-01-12T10:20,Image acquisition start,ImagingStudy,Tech. Olsen,radiographer,CR,,,,,,
+CXR-011,ACC20260112011,2026-01-12T10:20,Order placed,ServiceRequest,Dr. Nielsen,clinician,,,,,,,indication=Routine chest imaging|referred_from=Nørrebro Community Clinic
+CXR-011,ACC20260112011,2026-01-12T10:20,Order accepted,Task,RIS System,system,,,,,,,referred_from=Nørrebro Community Clinic
+CXR-011,ACC20260112011,2026-01-12T10:20,Image acquisition start,ImagingStudy,Tech. Hansen,radiographer,CR,,,,,,referred_from=Nørrebro Community Clinic
+CXR-011,ACC20260112011,2026-01-12T10:20,Patient selected from worklist,Task,Tech. Hansen,radiographer,,,,,,,referred_from=Nørrebro Community Clinic
+CXR-011,ACC20260112011,2026-01-12T10:20,Images uploaded to PACS,ImagingStudy,Tech. Hansen,radiographer,CR,1.2.840.113619.2.26.1.20260112.091500,2,4,,,views=PA and Lateral|referred_from=Nørrebro Community Clinic
+CXR-011,ACC20260112011,2026-01-12T10:21,Case selected,Task,Dr. Christensen,senior,,,,,,,referred_from=Nørrebro Community Clinic
+CXR-011,ACC20260112011,2026-01-12T10:21,Report finalised,DiagnosticReport,Dr. Christensen,senior,,,,,RPT-2026-011,CA40.0,status=final|referred_from=Nørrebro Community Clinic
+CXR-011,ACC20260112011,2026-01-12T10:21,Report distributed,DiagnosticReport,RIS System,system,,,,,RPT-2026-011,,referred_from=Nørrebro Community Clinic
+CXR-004,ACC20260112004,2026-01-12T10:22,Case selected,Task,Dr. Christensen,senior,,,,,,,shift=day
+CXR-006,ACC20260112006,2026-01-12T10:24,Image acquisition end,ImagingStudy,Tech. Olsen,radiographer,CR,,,,,,
+CXR-006,ACC20260112006,2026-01-12T10:25,Images uploaded to PACS,ImagingStudy,Tech. Olsen,radiographer,CR,1.2.840.113619.2.26.1.20260112.102500,2,4,,,views=PA and Lateral
+CXR-005,ACC20260112005,2026-01-12T10:25,Report finalised,DiagnosticReport,Dr. Sørensen,senior,,,,,RPT-2026-005,CA40.0,status=final
+CXR-005,ACC20260112005,2026-01-12T10:26,Report distributed,DiagnosticReport,RIS System,system,,,,,RPT-2026-005,,
+CXR-008,ACC20260112008,2026-01-12T10:28,Order placed,ServiceRequest,Dr. Jensen,clinician,,,,,,,indication=Routine pre-op
+CXR-004,ACC20260112004,2026-01-12T10:32,Report finalised,DiagnosticReport,Dr. Christensen,senior,,,,,RPT-2026-004,MD30.0,status=final|critical=true
+CXR-004,ACC20260112004,2026-01-12T10:33,Report distributed,DiagnosticReport,RIS System,system,,,,,RPT-2026-004,,
+CXR-007,ACC20260112007,2026-01-12T10:38,Image acquisition start,ImagingStudy,Tech. Larsen,radiographer,DX,,,,,,
+CXR-009,ACC20260112009,2026-01-12T10:40,Order placed,ServiceRequest,Dr. Nielsen,clinician,,,,,,dyspnea,indication=Follow-up heart failure
+CXR-008,ACC20260112008,2026-01-12T10:40,Patient selected from worklist,Task,Tech. Hansen,radiographer,,,,,,,
+CXR-007,ACC20260112007,2026-01-12T10:42,Image acquisition end,ImagingStudy,Tech. Larsen,radiographer,DX,,,,,,
+CXR-009,ACC20260112009,2026-01-12T10:42,Order accepted,Task,RIS System,system,,,,,,,
+CXR-007,ACC20260112007,2026-01-12T10:43,Images uploaded to PACS,ImagingStudy,Tech. Larsen,radiographer,DX,1.2.840.113619.2.26.1.20260112.104300,1,1,,,views=AP upright
+CXR-006,ACC20260112006,2026-01-12T10:45,Case selected,Task,Dr. Sørensen,senior,,,,,,,
+CXR-008,ACC20260112008,2026-01-12T10:52,Image acquisition start,ImagingStudy,Tech. Hansen,radiographer,CR,,,,,,
+CXR-008,ACC20260112008,2026-01-12T10:55,Image acquisition end,ImagingStudy,Tech. Hansen,radiographer,CR,,,,,,
+CXR-010,ACC20260112010,2026-01-12T10:55,Order placed,ServiceRequest,Dr. Kumar,clinician,,,,,,,indication=Acute dyspnea
+CXR-008,ACC20260112008,2026-01-12T10:56,Images uploaded to PACS,ImagingStudy,Tech. Hansen,radiographer,CR,1.2.840.113619.2.26.1.20260112.105600,2,4,,,views=PA and Lateral
+CXR-010,ACC20260112010,2026-01-12T10:57,Order accepted,Task,RIS System,system,,,,,,,
+CXR-006,ACC20260112006,2026-01-12T10:58,Report finalised,DiagnosticReport,Dr. Sørensen,senior,,,,,RPT-2026-006,CA40.0,status=final
+CXR-006,ACC20260112006,2026-01-12T10:59,Report distributed,DiagnosticReport,RIS System,system,,,,,RPT-2026-006,,
+CXR-007,ACC20260112007,2026-01-12T11:02,Case selected,Task,Dr. Andersen,resident,,,,,,,
+CXR-009,ACC20260112009,2026-01-12T11:05,Patient selected from worklist,Task,Tech. Olsen,radiographer,,,,,,,
+CXR-009,ACC20260112009,2026-01-12T11:08,Image acquisition start,ImagingStudy,Tech. Olsen,radiographer,CR,,,,,,
+CXR-010,ACC20260112010,2026-01-12T11:10,Patient selected from worklist,Task,Tech. Larsen,radiographer,,,,,,,
+CXR-009,ACC20260112009,2026-01-12T11:12,Image acquisition end,ImagingStudy,Tech. Olsen,radiographer,CR,,,,,,
+CXR-007,ACC20260112007,2026-01-12T11:12,Preliminary report created,DiagnosticReport,Dr. Andersen,resident,,,,,RPT-2026-007-PRELIM,CB27.0,status=preliminary
+CXR-009,ACC20260112009,2026-01-12T11:13,Images uploaded to PACS,ImagingStudy,Tech. Olsen,radiographer,CR,1.2.840.113619.2.26.1.20260112.111300,2,4,,,views=PA and Lateral
+CXR-010,ACC20260112010,2026-01-12T11:15,Image acquisition start,ImagingStudy,Tech. Larsen,radiographer,DX,,,,,,location=ED portable
+CXR-010,ACC20260112010,2026-01-12T11:18,Image acquisition end,ImagingStudy,Tech. Larsen,radiographer,DX,,,,,,
+CXR-007,ACC20260112007,2026-01-12T11:18,Report finalised,DiagnosticReport,Dr. Sørensen,senior,,,,,RPT-2026-007,CB27.0,status=final
+CXR-010,ACC20260112010,2026-01-12T11:19,Images uploaded to PACS,ImagingStudy,Tech. Larsen,radiographer,DX,1.2.840.113619.2.26.1.20260112.111900,1,2,,,views=AP supine
+CXR-007,ACC20260112007,2026-01-12T11:19,Report distributed,DiagnosticReport,RIS System,system,,,,,RPT-2026-007,,
+CXR-008,ACC20260112008,2026-01-12T11:22,Case selected,Task,Dr. Sørensen,senior,,,,,,,
+CXR-009,ACC20260112009,2026-01-12T11:32,Case selected,Task,Dr. Sørensen,senior,,,,,,,
+CXR-010,ACC20260112010,2026-01-12T11:35,Case selected,Task,Dr. Christensen,senior,,,,,,,
+CXR-008,ACC20260112008,2026-01-12T11:35,Report finalised,DiagnosticReport,Dr. Sørensen,senior,,,,,RPT-2026-008,QA02,status=final
+CXR-008,ACC20260112008,2026-01-12T11:36,Report distributed,DiagnosticReport,RIS System,system,,,,,RPT-2026-008,,
+CXR-009,ACC20260112009,2026-01-12T11:38,Report distributed,DiagnosticReport,RIS System,system,,,,,RPT-2026-009,,
+CXR-009,ACC20260112009,2026-01-12T11:42,Report finalised,DiagnosticReport,Dr. Sørensen,senior,,,,,RPT-2026-009,BD10,status=final
+CXR-010,ACC20260112010,2026-01-12T11:45,Report finalised,DiagnosticReport,Dr. Christensen,senior,,,,,RPT-2026-010,MD11.0,status=final|critical=true
+CXR-010,ACC20260112010,2026-01-12T11:46,Report distributed,DiagnosticReport,RIS System,system,,,,,RPT-2026-010,,
+CXR-010,ACC20260112010,2026-01-12T11:52,Critical communication,DiagnosticReport,Dr. Christensen,senior,,,,,RPT-2026-010,,Urgent call to referring clinician
+CXR-015,ACC20260112015,2026-01-12T13:45,Order placed,ServiceRequest,Dr. Møller,clinician,,,,,,,indication=Cough and fever|
+CXR-015,ACC20260112015,2026-01-12T13:46,Order accepted,Task,RIS System,system,,,,,,,
+CXR-015,ACC20260112015,2026-01-12T13:47,Image acquisition start,ImagingStudy,Tech. Olsen,radiographer,DX,,,,,,location=ED portable|
+CXR-015,ACC20260112015,2026-01-12T13:48,Patient selected from worklist,Task,Tech. Olsen,radiographer,,,,,,,
+CXR-015,ACC20260112015,2026-01-12T13:49,Image acquisition end,ImagingStudy,Tech. Olsen,radiographer,DX,,,,,,
+CXR-015,ACC20260112015,2026-01-12T13:50,Images uploaded to PACS,ImagingStudy,Tech. Olsen,radiographer,DX,1.2.840.113619.2.26.1.20260112.123400,1,2,,,views=AP supine|
+CXR-015,ACC20260112015,2026-01-12T13:51,Case selected,Task,Dr. Andersen,resident,,,,,,,
+CXR-013,ACC20260112013,2026-01-12T14:30,Order placed,ServiceRequest,Dr. Patel,clinician,,,,,,,indication=Chest pain evaluation|referred_from=Østerbro Satellite Clinic
+CXR-013,ACC20260112013,2026-01-12T14:30,Order accepted,Task,RIS System,system,,,,,,,referred_from=Østerbro Satellite Clinic
+CXR-013,ACC20260112013,2026-01-12T14:30,Image acquisition start,ImagingStudy,Tech. Larsen,radiographer,CR,,,,,,attempt=1|referred_from=Østerbro Satellite Clinic
+CXR-013,ACC20260112013,2026-01-12T14:30,Patient selected from worklist,Task,Tech. Larsen,radiographer,,,,,,,referred_from=Østerbro Satellite Clinic
+CXR-013,ACC20260112013,2026-01-12T14:30,Image acquisition end,ImagingStudy,Tech. Larsen,radiographer,CR,,,,,,attempt=1|referred_from=Østerbro Satellite Clinic
+CXR-013,ACC20260112013,2026-01-12T14:30,Image acquisition start,ImagingStudy,Tech. Larsen,radiographer,CR,,,,,,attempt=2|referred_from=Østerbro Satellite Clinic
+CXR-013,ACC20260112013,2026-01-12T14:30,Image acquisition end,ImagingStudy,Tech. Larsen,radiographer,CR,,,,,,attempt=2|referred_from=Østerbro Satellite Clinic
+CXR-013,ACC20260112013,2026-01-12T14:30,Images uploaded to PACS,ImagingStudy,Tech. Larsen,radiographer,CR,1.2.840.113619.2.26.1.20260112.085700,2,4,,,views=PA and Lateral|referred_from=Østerbro Satellite Clinic
+CXR-013,ACC20260112013,2026-01-12T14:31,Case selected,Task,Dr. Andersen,resident,,,,,,,referred_from=Østerbro Satellite Clinic
+CXR-013,ACC20260112013,2026-01-12T14:31,Preliminary report created,DiagnosticReport,Dr. Andersen,resident,,,,,RPT-2026-013-PRELIM,CA40.0,status=preliminary|referred_from=Østerbro Satellite Clinic
+CXR-013,ACC20260112013,2026-01-12T14:31,Report validated and approved,DiagnosticReport,Dr. Sørensen,senior,,,,,RPT-2026-013-PRELIM,,referred_from=Østerbro Satellite Clinic
+CXR-013,ACC20260112013,2026-01-12T14:31,Report finalised,DiagnosticReport,Dr. Sørensen,senior,,,,,RPT-2026-013,CA40.0,status=final|referred_from=Østerbro Satellite Clinic
+CXR-013,ACC20260112013,2026-01-12T14:31,Report distributed,DiagnosticReport,RIS System,system,,,,,RPT-2026-013,,referred_from=Østerbro Satellite Clinic
+CXR-003,ACC20260112003,2026-01-12T15:20,Report validated and approved,DiagnosticReport,Dr. Sørensen,senior,,,,,RPT-2026-003-PRELIM,,
+CXR-003,ACC20260112003,2026-01-12T15:22,Report finalised,DiagnosticReport,Dr. Sørensen,senior,,,,,RPT-2026-003,,status=final
+CXR-003,ACC20260112003,2026-01-12T15:23,Report distributed,DiagnosticReport,RIS System,system,,,,,RPT-2026-003,,
+CXR-014,ACC20260112014,2026-01-12T16:45,Order placed,ServiceRequest,Dr. Kumar,clinician,,,,,,,indication=Pre-operative assessment
+CXR-014,ACC20260112014,2026-01-12T16:47,Order accepted,Task,RIS System,system,,,,,,,
+CXR-014,ACC20260112014,2026-01-12T17:04,Patient selected from worklist,Task,Tech. Hansen,radiographer,,,,,,,
+CXR-014,ACC20260112014,2026-01-12T17:05,Image acquisition start,ImagingStudy,Tech. Hansen,radiographer,CR,,,,,,shift=evening
+CXR-014,ACC20260112014,2026-01-12T17:08,Image acquisition end,ImagingStudy,Tech. Hansen,radiographer,CR,,,,,,
+CXR-014,ACC20260112014,2026-01-12T17:09,Images uploaded to PACS,ImagingStudy,Tech. Hansen,radiographer,CR,1.2.840.113619.2.26.1.20260112.170900,2,4,,,views=PA and Lateral
+CXR-014,ACC20260112014,2026-01-13T08:30,Case selected,Task,Dr. Christensen,senior,,,,,,,shift=morning
+CXR-014,ACC20260112014,2026-01-13T08:45,Report finalised,DiagnosticReport,Dr. Christensen,senior,,,,,RPT-2026-014,QA02,status=final
+CXR-014,ACC20260112014,2026-01-13T08:46,Report distributed,DiagnosticReport,RIS System,system,,,,,RPT-2026-014,,
