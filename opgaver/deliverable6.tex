@@ -48,51 +48,22 @@ RQ1 drove M10 and M11, RQ2 drove M8, and RQ3 drove representativity/provenance e
 
 \item \textbf{Results interpretation}
 Key outputs are summarised in Appendix~\ref{app:part2_supporting}, Table~\ref{tab:d5_key_results}, with figures in Figures~\ref{fig:d5_viz_missingness}--\ref{fig:d5_viz_workload}.
+Interpretation was mapped to the five-facet assessment lens (Data, Source, System, Task, Human) to keep method results comparable across RQs \parenciteshort{mohammed2025fivefacets}.
 
-\textbf{Method 2 (M2: Completeness)}
-\begin{itemize}
-  \item \textbf{Key result:} high missingness in context fields (e.g., \texttt{study\_uid} 134/150, \texttt{modality} 101/150).
-  \item \textbf{Interpretation:} core sequence analysis remains possible, but contextual/clinical interpretation is constrained.
-  \item \textbf{Expectation check and improvement:} Expected direction confirmed; improvement would require stricter field-population rules at source.
-  \item \textbf{Expectation status:} Yes, mostly.
-  \item \textbf{Primary facets informed:} Data, Source, System.
-\end{itemize}
+\textbf{Method 2 (M2: Completeness).}
+High missingness in context fields (\texttt{study\_uid} 134/150, \texttt{modality} 101/150) confirms that sequence-level analysis is feasible but clinically richer interpretation is constrained. This primarily informs Data, Source, and System facets; improvement requires stricter source-level field population rules.
 
-\textbf{Method 6 (M6: Representativity)}
-\begin{itemize}
-  \item \textbf{Key result:} urgency and shift skew (15 stat/urgent, 2 routine; Day 11, Night 6, Evening 0).
-  \item \textbf{Interpretation:} observed process is not evenly representative across operational contexts.
-  \item \textbf{Expectation check and improvement:} Some skew expected; magnitude was larger than expected. Improvement: stratified sampling or longer capture window.
-  \item \textbf{Expectation status:} Partly; direction yes, magnitude underestimated.
-  \item \textbf{Primary facets informed:} Data, Task, Human.
-\end{itemize}
+\textbf{Method 6 (M6: Representativity).}
+Urgency and shift skew (15 stat/urgent vs 2 routine; Day 11, Night 6, Evening 0) shows limited representativity across operational contexts. Direction matched expectations, but the magnitude was larger than expected. Main facets: Data, Task, Human. Improvement: stratified sampling and/or longer capture windows.
 
-\textbf{Method 8 (M8: Critical communication conformance)}
-\begin{itemize}
-  \item \textbf{Key result:} 16 pass, 1 fail (\texttt{CXR-004} missing critical communication event).
-  \item \textbf{Interpretation:} near-compliance overall, but one missing communication event is still a material safety signal.
-  \item \textbf{Expectation check and improvement:} High pass rate expected; failure still important. Improvement: mandatory critical-communication traceability.
-  \item \textbf{Expectation status:} Yes on overall level, but failure remains meaningful.
-  \item \textbf{Primary facets informed:} Task, System, Human.
-\end{itemize}
+\textbf{Method 8 (M8: Critical communication conformance).}
+Result: 16 pass and 1 fail (\texttt{CXR-004} missing critical communication event). Even with high aggregate pass rate, the failed case is a clinically significant safety non-conformance and should be treated as a high-priority process signal, not statistical noise. Main facets: Task, System, Human. Improvement: mandatory traceability for critical communication steps.
 
-\textbf{Method 10 (M10: TAT + batch-logging detection)}
-\begin{itemize}
-  \item \textbf{Key result:} mean total TAT 147.93 min (raw) vs 198.50 min (clean); 6/17 flagged (35.29\%).
-  \item \textbf{Interpretation:} performance conclusions are highly sensitive to timestamp credibility and entry behavior.
-  \item \textbf{Expectation check and improvement:} Some sensitivity expected; effect size was surprising. Improvement: explicit entry-mode metadata and real-time logging controls.
-  \item \textbf{Expectation status:} Partly.
-  \item \textbf{Primary facets informed:} Data, System, Task.
-\end{itemize}
+\textbf{Method 10 (M10: TAT + batch-logging detection).}
+Mean total TAT changed from 147.93 min (raw) to 198.50 min (clean), with 6/17 cases flagged (35.29\%). This confirms that performance conclusions are highly sensitive to timestamp credibility and logging behaviour. Main facets: Data, System, Task. Improvement: explicit entry-mode metadata and stricter real-time logging controls.
 
-\textbf{Method 11 (M11: Workload distribution)}
-\begin{itemize}
-  \item \textbf{Key result:} events by role: radiographer 64, system 31, senior 31, clinician 17, resident 7.
-  \item \textbf{Interpretation:} workload and visibility are concentrated, shaping both process interpretation and AI-readiness assumptions.
-  \item \textbf{Expectation check and improvement:} Concentration expected and confirmed. Improvement: compare with planned staffing and shift schedules.
-  \item \textbf{Expectation status:} Yes.
-  \item \textbf{Primary facets informed:} Human, Task, System.
-\end{itemize}
+\textbf{Method 11 (M11: Workload distribution).}
+Events were concentrated by role (radiographer 64, system 31, senior 31, clinician 17, resident 7), confirming uneven visibility and workload distribution. Main facets: Human, Task, System. Improvement: compare observed concentrations with planned staffing and shift allocations.
 
 Across methods, the biggest cross-cutting insight is that conclusions become much less stable when representativity and timestamp credibility issues are accounted for.
 
@@ -104,66 +75,8 @@ The proposed custom DQ dimension is \textbf{operational authenticity}: whether l
 In exploration code (Part 5), case \texttt{TEST-001} was flagged by multiple contamination signals: non-standard case ID, training/test marker in notes (\texttt{TRAINING CASE - DO NOT PROCESS}), administrative actor involvement, and a one-event trace. This pattern is not well covered by standard completeness/conformance checks but can bias downstream analysis.
 
 \textbf{Q4.c Custom DQ assessment code}
-\begin{lstlisting}[style=pycode,caption={Custom assessment method for operational authenticity},label={lst:d6_custom_method_inline}]
-def my_custom_dq_method(df: pd.DataFrame) -> Dict[str, any]:
-    """
-    Assess operational authenticity (production-relevance validity).
-    """
-    rows = []
-
-    for case_id, case_df in df.groupby('case_id'):
-        reasons = []
-
-        if not re.match(r'^CXR-\d{3}$', str(case_id)):
-            reasons.append('Unexpected case_id format')
-
-        if case_df['notes'].astype(str).str.contains(
-            r'training|test|do not process', case=False, na=False
-        ).any():
-            reasons.append('Training/test markers in notes')
-
-        if case_df['actor'].eq('Admin User').any():
-            reasons.append('Administrative/test actor involvement')
-
-        if len(case_df) < 3:
-            reasons.append('Extremely short trace (low operational realism)')
-
-        score = len(reasons)
-        if score >= 3:
-            risk_level = 'high'
-        elif score >= 1:
-            risk_level = 'medium'
-        else:
-            risk_level = 'low'
-
-        rows.append({
-            'case_id': case_id,
-            'risk_level': risk_level,
-            'risk_score': score,
-            'reasons': '; '.join(reasons) if reasons else 'None',
-            'event_count': len(case_df),
-        })
-
-    case_flags = pd.DataFrame(rows).sort_values(
-        ['risk_score', 'case_id'], ascending=[False, True]
-    )
-    flagged = case_flags[case_flags['risk_level'].isin(['high', 'medium'])].copy()
-
-    summary_metrics = {
-        'total_cases': int(len(case_flags)),
-        'flagged_cases': int(len(flagged)),
-        'flagged_case_rate_pct': round(
-            100 * len(flagged) / len(case_flags), 2
-        ) if len(case_flags) > 0 else 0.0,
-        'high_risk_cases': int((case_flags['risk_level'] == 'high').sum()),
-    }
-
-    return {
-        'case_flags': case_flags,
-        'flagged_cases': flagged,
-        'summary_metrics': summary_metrics,
-    }
-\end{lstlisting}
+\par
+The full implementation is provided in Appendix~\ref{app:d5_custom_code}, Listing~\ref{lst:d5_custom_method}.
 
 \textbf{Q4.d RQ impact and mechanism}\par
 Summary results (Appendix~\ref{app:d5_custom_dimension}, Table~\ref{tab:d5_custom_summary}) show 1 high-risk flagged case out of 17 (5.88\%). Even this small share affects all RQs:
@@ -178,41 +91,16 @@ Facet mapping is included in Appendix~\ref{app:d5_custom_dimension}, Table~\ref{
 
 \item \textbf{Per-facet data quality synthesis}
 \textbf{Q5.note Custom-method code reference}\par
-The custom assessment code used in this synthesis is included above in Q4.c (Listing~\ref{lst:d6_custom_method_inline}) and also documented in Appendix~\ref{app:d5_custom_code}, Listing~\ref{lst:d5_custom_method}.
+The custom assessment code used in this synthesis is documented in Appendix~\ref{app:d5_custom_code}, Listing~\ref{lst:d5_custom_method}.
 
-\textbf{Q5.a Data facet findings, issues, and RQ consequences}
+\textbf{Q5.a--e Facet findings, issues, and RQ consequences}\par
+Using the facet framing from \textcite{mohammed2025fivefacets}, the synthesis is:
 \begin{itemize}
-  \item \textbf{Revealed by methods:} M2 missingness profile and M10 timestamp sensitivity.
-  \item \textbf{Main issues:} high field sparsity and unstable timing-based estimates under credibility checks.
-  \item \textbf{Consequences for RQs:} weaker confidence in RQ1 performance estimates and RQ3 feature reliability.
-\end{itemize}
-
-\textbf{Q5.b Source facet findings, issues, and RQ consequences}
-\begin{itemize}
-  \item \textbf{Revealed by methods:} custom dimension plus M2 context sparsity.
-  \item \textbf{Main issues:} provenance contamination risk (e.g., \texttt{TEST-001}) and inconsistent source-level completeness.
-  \item \textbf{Consequences for RQs:} reduced transferability and training-data trust, especially for RQ3.
-\end{itemize}
-
-\textbf{Q5.c System facet findings, issues, and RQ consequences}
-\begin{itemize}
-  \item \textbf{Revealed by methods:} M8 communication conformance and M10 batch-logging warnings.
-  \item \textbf{Main issues:} logging design and entry behavior strongly influence apparent process reality.
-  \item \textbf{Consequences for RQs:} RQ1 and RQ2 can be biased if logged time is treated as exact work time.
-\end{itemize}
-
-\textbf{Q5.d Task facet findings, issues, and RQ consequences}
-\begin{itemize}
-  \item \textbf{Revealed by methods:} M6 urgency/shift skew and M8 threshold-based conformance.
-  \item \textbf{Main issues:} task-pattern imbalance and policy-threshold dependence.
-  \item \textbf{Consequences for RQs:} efficiency/safety conclusions may partly reflect case mix and rule settings.
-\end{itemize}
-
-\textbf{Q5.e Human facet findings, issues, and RQ consequences}
-\begin{itemize}
-  \item \textbf{Revealed by methods:} M11 workload concentration; M10/custom hints about documentation behavior.
-  \item \textbf{Main issues:} concentration and human logging practice shape what becomes visible.
-  \item \textbf{Consequences for RQs:} RQ1 bottleneck interpretation and RQ3 assumptions can be role-biased.
+  \item \textbf{Data facet:} M2 and M10 show high sparsity and timestamp-sensitive metrics; this weakens confidence in RQ1 performance estimates and RQ3 feature reliability.
+  \item \textbf{Source facet:} custom-method flags (e.g., \texttt{TEST-001}) plus context sparsity indicate provenance contamination risk; this lowers transferability and trust, especially for RQ3.
+  \item \textbf{System facet:} M8/M10 show that logging design and entry behaviour shape visible process reality; this can bias both RQ1 and RQ2 when logged time is treated as exact work time.
+  \item \textbf{Task facet:} M6/M8 show urgency-shift imbalance and threshold dependence; this means efficiency and safety conclusions may partly reflect case mix and policy configuration.
+  \item \textbf{Human facet:} M11 (plus M10/custom indicators) shows concentration and documentation-pattern effects; this can produce role-biased bottleneck and AI-readiness interpretations (RQ1, RQ3).
 \end{itemize}
 
 \textbf{Q5.f Most challenging facet and reason}\par
@@ -221,6 +109,7 @@ The \textbf{Human} facet was most difficult. Event logs capture actions but rare
 \textbf{Q5.g Alternative assessment options}
 \begin{itemize}
   \item Add explicit provenance metadata (production/test flag, entry mode, user context).
+  \item Strengthen interoperability at capture time with a consistent event profile (stable case identifiers, structured reason codes, and aligned FHIR resource/event mappings such as \texttt{ServiceRequest}, \texttt{ImagingStudy}, \texttt{DiagnosticReport}) to reduce cross-system ambiguity \parenciteshort{benson2016principles,hildebrandt2026process}.
   \item Triangulate with linked systems (RIS/PACS/message logs) for cross-source validation.
   \item Use targeted mini-interviews or debriefs for anomalous cases.
   \item Run periodic audits on documentation practice and timing behavior.
